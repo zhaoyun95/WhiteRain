@@ -56,7 +56,7 @@ namespace WoWObjectManager
             }
 
             WoWUnit WoWUnit = ObjectManager.WoWUnitList[TargetGUID];
-            Console.WriteLine(string.Format("\r\n [Target] GUID: {0} - X: {1} Y: {2} Z: {3}\r\nName: {4} \r\nHealth: {5}/{6} Power: {7}/{8} Level: {9}", WoWUnit.GUID, WoWUnit.Position.X, WoWUnit.Position.Y, WoWUnit.Position.Z, WoWUnit.Name, WoWUnit.BaseHealth, WoWUnit.MaxHealth, WoWUnit.BasePower, WoWUnit.MaxPower, WoWUnit.Level));
+            Console.WriteLine(string.Format("\r\n[Target] GUID: {0} - X: {1} Y: {2} Z: {3}\r\nName: {4} \r\nHealth: {5}/{6} Power: {7}/{8} Level: {9}", WoWUnit.Guid, WoWUnit.Position.X, WoWUnit.Position.Y, WoWUnit.Position.Z, WoWUnit.Name, WoWUnit.BaseHealth, WoWUnit.MaxHealth, WoWUnit.BasePower, WoWUnit.MaxPower, WoWUnit.Level));
             Console.WriteLine(string.Format("DisplayId: {0}", WoWUnit.DisplayId));
         }
     }

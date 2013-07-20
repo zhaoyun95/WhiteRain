@@ -87,25 +87,15 @@ namespace WoWObjectManager
 
             while (CurObj != 0 && (CurObj & 1) == 0)
             {
-                /*
-                 * 1. Items
-                 * 2. Players
-                 * 3. NPCS / Monsters
-                 * 4. Containers
-                 * 5. Corpses
-                 * 6. Game Objects
-                 * 7. Dynamic Objects
-                 */
-
-                WoWObject obj = new WoWObject(CurObj);
+                WoWObject WoWObject = new WoWObject(CurObj);
                 uint NextObj = WoW.ReadUInt(CurObj + (Int32)Offsets.ObjectManager.NextObject);
 
-                if (obj.Guid == PlayerGUID)
+                if (WoWObject.Guid == PlayerGUID)
                     Me = new WoWPlayerMe(CurObj);
 
-                switch (obj.Type)
+                switch (WoWObject.Type)
                 {
-                    case 3:
+                    case (int) WoWObjectType.Unit:
                         WoWUnit WoWUnit = new WoWUnit(CurObj);
                         Console.WriteLine(string.Format("[WoWUnit] GUID: {0} - X: {1} Y: {2} Z: {3}\r\nName: {4} \r\nHealth: {5}/{6} Power: {7}/{8} Level: {9}", WoWUnit.Guid, WoWUnit.Position.X, WoWUnit.Position.Y, WoWUnit.Position.Z, WoWUnit.Name, WoWUnit.BaseHealth, WoWUnit.MaxHealth, WoWUnit.BasePower, WoWUnit.MaxPower, WoWUnit.Level));
                         WoWUnitList.Add(WoWUnit.Guid, WoWUnit);

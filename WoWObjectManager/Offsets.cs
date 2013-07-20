@@ -88,6 +88,17 @@ namespace WoWObjectManager
         Druid = 11,
     }
 
+    public enum WoWObjectType
+    {
+        Item = 1,
+        Player = 2,
+        Unit = 3,
+        Container = 4,
+        Corpse = 5,
+        GameObject = 6,
+        DynamicObject = 7
+    }
+
     public class Vector3
     {
         internal float X { get; set; }

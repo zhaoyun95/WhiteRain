@@ -13,24 +13,16 @@ using System;
 namespace WoWObjectManager
 {
     /// <summary>
-    /// An unit, for example an NPC.
+    /// An unit (Monster, NPCs)
     /// </summary>
     class WoWUnit : WoWObject
     {
-
         /// <summary>
-        /// Initiates a new of the WoWUnit object.
+        /// Instantiates a new WoWUnit
         /// </summary>
-        /// <param name="baseAddr">The units base address.</param>
-        public WoWUnit(uint baseAddr) : base(baseAddr)
-        {
-            BaseAddr = baseAddr;
-        }
-
-        /// <summary>
-        /// The units base address
-        /// </summary>
-        internal uint BaseAddr { get; set; }
+        /// <param name="BaseAddress">The units base address.</param>
+        public WoWUnit(uint BaseAddress)
+            : base(BaseAddress) { }
 
         /// <summary>
         /// Returns the postion as Vector3.
@@ -40,9 +32,9 @@ namespace WoWObjectManager
             get
             {
                 return new Vector3(
-                    ObjectManager.WoW.ReadFloat(BaseAddr + (Int32) Offsets.WoWUnit.X),
-                    ObjectManager.WoW.ReadFloat(BaseAddr + (Int32) Offsets.WoWUnit.Y),
-                    ObjectManager.WoW.ReadFloat(BaseAddr + (Int32) Offsets.WoWUnit.Z)
+                    ObjectManager.WoW.ReadFloat(BaseAddress + (Int32) Offsets.WoWUnit.X),
+                    ObjectManager.WoW.ReadFloat(BaseAddress + (Int32) Offsets.WoWUnit.Y),
+                    ObjectManager.WoW.ReadFloat(BaseAddress + (Int32) Offsets.WoWUnit.Z)
                     );
             }
         }
@@ -52,12 +44,12 @@ namespace WoWObjectManager
         /// </summary>
         internal string Name
         {
-            get { return ObjectManager.WoW.ReadASCIIString(ObjectManager.WoW.ReadUInt(ObjectManager.WoW.ReadUInt(BaseAddr + (Int32)Offsets.WoWUnit.NamePointer) + (Int32) Offsets.WoWUnit.NameOffset), 100); }
+            get { return ObjectManager.WoW.ReadASCIIString(ObjectManager.WoW.ReadUInt(ObjectManager.WoW.ReadUInt(BaseAddress + (Int32)Offsets.WoWUnit.NamePointer) + (Int32) Offsets.WoWUnit.NameOffset), 100); }
         }
 
         internal int DisplayId
         {
-            get { return ObjectManager.WoW.ReadInt(ObjectManager.WoW.ReadUInt((uint)BaseAddr + (Int32)Offsets.Descriptors.Descriptor) + (Int32)Offsets.Descriptors.DisplayId); }
+            get { return ObjectManager.WoW.ReadInt(ObjectManager.WoW.ReadUInt((uint)BaseAddress + (Int32)Offsets.Descriptors.Descriptor) + (Int32)Offsets.Descriptors.DisplayId); }
         }
 
         /// <summary>
@@ -65,14 +57,14 @@ namespace WoWObjectManager
         /// </summary>
         internal float BaseHealth
         {
-            get { return ObjectManager.WoW.ReadInt(ObjectManager.WoW.ReadUInt((uint)BaseAddr + (Int32)Offsets.Descriptors.Descriptor) + (Int32) Offsets.Descriptors.BaseHealth); }
+            get { return ObjectManager.WoW.ReadInt(ObjectManager.WoW.ReadUInt((uint)BaseAddress + (Int32)Offsets.Descriptors.Descriptor) + (Int32) Offsets.Descriptors.BaseHealth); }
         }
 
         /// <summary>
         /// The units max health
         /// </summary>
         internal float MaxHealth {
-            get { return ObjectManager.WoW.ReadInt(ObjectManager.WoW.ReadUInt((uint)BaseAddr + (Int32)Offsets.Descriptors.Descriptor) + (Int32) Offsets.Descriptors.MaxHealth); }
+            get { return ObjectManager.WoW.ReadInt(ObjectManager.WoW.ReadUInt((uint)BaseAddress + (Int32)Offsets.Descriptors.Descriptor) + (Int32) Offsets.Descriptors.MaxHealth); }
         }
 
         /// <summary>
@@ -80,7 +72,7 @@ namespace WoWObjectManager
         /// </summary>
         internal float BasePower
         {
-            get { return ObjectManager.WoW.ReadInt(ObjectManager.WoW.ReadUInt((uint)BaseAddr + (Int32)Offsets.Descriptors.Descriptor) + (Int32)Offsets.Descriptors.BasePower); }
+            get { return ObjectManager.WoW.ReadInt(ObjectManager.WoW.ReadUInt((uint)BaseAddress + (Int32)Offsets.Descriptors.Descriptor) + (Int32)Offsets.Descriptors.BasePower); }
         }
 
         /// <summary>
@@ -88,7 +80,7 @@ namespace WoWObjectManager
         /// </summary>
         internal float MaxPower
         {
-            get { return ObjectManager.WoW.ReadInt(ObjectManager.WoW.ReadUInt((uint)BaseAddr + (Int32)Offsets.Descriptors.Descriptor) + (Int32)Offsets.Descriptors.MaxPower); }
+            get { return ObjectManager.WoW.ReadInt(ObjectManager.WoW.ReadUInt((uint)BaseAddress + (Int32)Offsets.Descriptors.Descriptor) + (Int32)Offsets.Descriptors.MaxPower); }
         }
 
         /// <summary>
@@ -96,7 +88,7 @@ namespace WoWObjectManager
         /// </summary>
         internal float Level
         {
-            get { return ObjectManager.WoW.ReadInt(ObjectManager.WoW.ReadUInt((uint)BaseAddr + (Int32)Offsets.Descriptors.Descriptor) + (Int32)Offsets.Descriptors.Level); }
+            get { return ObjectManager.WoW.ReadInt(ObjectManager.WoW.ReadUInt((uint)BaseAddress + (Int32)Offsets.Descriptors.Descriptor) + (Int32)Offsets.Descriptors.Level); }
         }
 
         /// <summary>
