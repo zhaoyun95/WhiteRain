@@ -7,7 +7,7 @@ ObjectManager for World of Warcraft patch 5.3.0 17055.
 Requirements
 ================
 
-* BlackMagic
+* GreyMagic 
 
 Credits
 ================
