@@ -9,8 +9,9 @@
  */
 
 using System;
+using System.Collections.Specialized;
 
-namespace WoWObjectManager
+namespace WoWObjectManager.Objects
 {
     /// <summary>
     /// An object.
@@ -21,7 +22,7 @@ namespace WoWObjectManager
         /// Instantiates a new WoWUnit
         /// </summary>
         /// <param name="baseAddr">The object's base address</param>
-        public WoWObject(uint BaseAddress)
+        internal WoWObject(uint BaseAddress)
         {
             this.BaseAddress = BaseAddress;
         }
@@ -29,20 +30,62 @@ namespace WoWObjectManager
         /// <summary>
         /// The objects base address
         /// </summary>
-        public uint BaseAddress { get; set; }
+        internal uint BaseAddress { get; set; }
+
+        internal uint DescriptorBase
+        {
+            get { return ObjectManager.WoW.ReadUInt((uint)this.BaseAddress + (int)Offsets.Descriptors.Descriptor); }
+        }
 
         /// <summary>
         /// The objects type
         /// </summary>
-        public uint Type
+        internal int Type
         {
-            get { return ObjectManager.WoW.ReadUInt(this.BaseAddress + (Int32)Offsets.WoWObject.Type); }
+            get { return ObjectManager.WoW.ReadInt(this.BaseAddress + (int)Offsets.WoWObject.Type); }
         }
 
-        //The objects guid
-        public ulong Guid
+        /// <summary>
+        /// The objects guid
+        /// </summary>
+        internal ulong Guid
         {
-            get { return ObjectManager.WoW.ReadUInt64(this.BaseAddress + (Int32)Offsets.WoWObject.GUID); }
+            get { return ObjectManager.WoW.ReadUInt64(this.BaseAddress + (int)Offsets.WoWObject.GUID); }
         }
+
+        
+        /// <summary>
+        /// Checks whether the unit has that dynamic flag or not
+        /// </summary>
+        /// <param name="flag">The dynamicFlag</param>
+        /// <returns>true or false</returns>
+        /*internal bool HasDynamicFlag(Offsets.UnitDynamicFlags flag)
+        {
+            return DynamicFlags[(int)flag];
+        }*/
+
+        /// <summary>
+        /// The objects dynamic flags
+        /// </summary> 
+        /*
+        internal dynamic DynamicFlags
+        {
+            get {
+                return ObjectManager.WoW.ReadByte(ObjectManager.WoW.ReadUInt(this.BaseAddress + 0x180));
+            }
+        }*/
+
+
+        /// <summary>
+        /// Gets the descriptor value
+        /// </summary>
+        /// <typeparam name="type">The type</typeparam>
+        /// <param name="field">Descriptor</param>
+        /// <returns>Descript value</returns>
+        internal type GetDescriptorField<type>(uint field) where type : struct
+        {
+            return (type)ObjectManager.WoW.ReadObject(this.DescriptorBase + field, typeof(type));
+        }
+
     }
 }

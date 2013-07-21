@@ -10,9 +10,10 @@
 
 using Magic;
 using System;
-using System.Linq;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using WoWObjectManager.Objects;
 
 namespace WoWObjectManager
 {
@@ -29,9 +30,14 @@ namespace WoWObjectManager
         internal static IDictionary<ulong, WoWUnit> WoWUnitList = new Dictionary<ulong, WoWUnit>();
 
         /// <summary>
+        /// A list of all corpses.
+        /// </summary>
+        internal static IDictionary<ulong, WoWCorpse> WoWCorpseList = new Dictionary<ulong, WoWCorpse>();
+
+        /// <summary>
         /// Storage 
         /// </summary>
-        internal static uint CurObj;
+        internal static uint CurObj, ObjMgr;
 
         /// <summary>
         /// The local's player GUID
@@ -59,10 +65,10 @@ namespace WoWObjectManager
             try
             {
                 WoW = new BlackMagic((from Process p in Process.GetProcesses() where p.ProcessName == "Wow" select p.Id).First());
-                uint ObjMgr = WoW.ReadUInt(WoW.ReadUInt((uint)WoW.MainModule.BaseAddress + (uint)Offsets.ObjectManager.clientConnection) + (uint)Offsets.ObjectManager.ObjectManager);
-                CurObj = WoW.ReadUInt(ObjMgr + (Int32)Offsets.ObjectManager.FirstObject);
+                ObjMgr = WoW.ReadUInt(WoW.ReadUInt((uint)WoW.MainModule.BaseAddress + (uint)Offsets.ObjectManager.clientConnection) + (uint)Offsets.ObjectManager.ObjectManager);
+                CurObj = WoW.ReadUInt(ObjMgr + (int)Offsets.ObjectManager.FirstObject);
 
-                PlayerGUID = WoW.ReadUInt64(ObjMgr + (Int32)Offsets.ObjectManager.LocalGUID);
+                PlayerGUID = WoW.ReadUInt64(ObjMgr + (int)Offsets.ObjectManager.LocalGUID);
 
                 Initialized = true;
                 Pulse();
@@ -82,22 +88,29 @@ namespace WoWObjectManager
             if (!Initialized)
                 return;
 
+            CurObj = WoW.ReadUInt(ObjMgr + (int)Offsets.ObjectManager.FirstObject);
+
             if (WoWUnitList.Count > 0)
                 WoWUnitList.Clear();
+            if (WoWCorpseList.Count > 0)
+                WoWCorpseList.Clear();
 
             while (CurObj != 0 && (CurObj & 1) == 0)
             {
                 WoWObject WoWObject = new WoWObject(CurObj);
-                uint NextObj = WoW.ReadUInt(CurObj + (Int32)Offsets.ObjectManager.NextObject);
+                uint NextObj = WoW.ReadUInt(CurObj + (int)Offsets.ObjectManager.NextObject);
 
                 if (WoWObject.Guid == PlayerGUID)
                     Me = new WoWPlayerMe(CurObj);
 
                 switch (WoWObject.Type)
                 {
+                    case (int) WoWObjectType.Corpse:
+                        WoWCorpse WoWCorpse = new WoWCorpse(CurObj);
+                        WoWCorpseList.Add(WoWCorpse.Guid, WoWCorpse);
+                        break;
                     case (int) WoWObjectType.Unit:
                         WoWUnit WoWUnit = new WoWUnit(CurObj);
-                        Console.WriteLine(string.Format("[WoWUnit] GUID: {0} - X: {1} Y: {2} Z: {3}\r\nName: {4} \r\nHealth: {5}/{6} Power: {7}/{8} Level: {9}", WoWUnit.Guid, WoWUnit.Position.X, WoWUnit.Position.Y, WoWUnit.Position.Z, WoWUnit.Name, WoWUnit.BaseHealth, WoWUnit.MaxHealth, WoWUnit.BasePower, WoWUnit.MaxPower, WoWUnit.Level));
                         WoWUnitList.Add(WoWUnit.Guid, WoWUnit);
                         break;
                 }

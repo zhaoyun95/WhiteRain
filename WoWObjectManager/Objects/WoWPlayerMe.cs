@@ -10,14 +10,14 @@
 
 using System;
 
-namespace WoWObjectManager
+namespace WoWObjectManager.Objects
 {
     /// <summary>
     /// Repesents the local player
     /// </summary>
     class WoWPlayerMe : WoWObject
     {
-        public WoWPlayerMe(uint BaseAddress)
+        internal WoWPlayerMe(uint BaseAddress)
             : base(BaseAddress) { }
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace WoWObjectManager
         /// </summary>
         internal string Name
         {
-            get { return ObjectManager.WoW.ReadASCIIString((uint) ObjectManager.WoW.MainModule.BaseAddress + (Int32) Offsets.WoWPlayerMe.Name, 128); }
+            get { return ObjectManager.WoW.ReadASCIIString((uint) ObjectManager.WoW.MainModule.BaseAddress + (int) Offsets.WoWPlayerMe.Name, 128); }
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace WoWObjectManager
         /// </summary>
         internal ulong TargetGUID
         {
-            get { return ObjectManager.WoW.ReadUInt64((uint)ObjectManager.WoW.MainModule.BaseAddress + (Int32)Offsets.WoWPlayerMe.TargetGUID); }
+            get { return ObjectManager.WoW.ReadUInt64((uint)ObjectManager.WoW.MainModule.BaseAddress + (int)Offsets.WoWPlayerMe.TargetGUID); }
         }
 
         /// <summary>
@@ -44,9 +44,9 @@ namespace WoWObjectManager
             get
             {
                 return new Vector3(
-                    ObjectManager.WoW.ReadFloat(BaseAddress + (Int32)Offsets.WoWUnit.X),
-                    ObjectManager.WoW.ReadFloat(BaseAddress + (Int32)Offsets.WoWUnit.Y),
-                    ObjectManager.WoW.ReadFloat(BaseAddress + (Int32)Offsets.WoWUnit.Z)
+                    ObjectManager.WoW.ReadFloat(BaseAddress + (int)Offsets.WoWUnit.X),
+                    ObjectManager.WoW.ReadFloat(BaseAddress + (int)Offsets.WoWUnit.Y),
+                    ObjectManager.WoW.ReadFloat(BaseAddress + (int)Offsets.WoWUnit.Z)
                     );
             }
         }
@@ -56,7 +56,7 @@ namespace WoWObjectManager
         /// </summary>
         internal int ContinentId
         {
-            get {return ObjectManager.WoW.ReadInt((uint)ObjectManager.WoW.MainModule.BaseAddress + (Int32) Offsets.WoWPlayerMe.ContinentId); }
+            get {return ObjectManager.WoW.ReadInt((uint)ObjectManager.WoW.MainModule.BaseAddress + (int) Offsets.WoWPlayerMe.ContinentId); }
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace WoWObjectManager
         /// </summary>
         internal int AreaId
         {
-            get { return ObjectManager.WoW.ReadInt((uint)ObjectManager.WoW.MainModule.BaseAddress + (Int32) Offsets.WoWPlayerMe.AreaId); }
+            get { return ObjectManager.WoW.ReadInt((uint)ObjectManager.WoW.MainModule.BaseAddress + (int) Offsets.WoWPlayerMe.AreaId); }
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace WoWObjectManager
         /// </summary>
         internal string ZoneText
         {
-            get { return ObjectManager.WoW.ReadASCIIString(ObjectManager.WoW.ReadUInt((uint)ObjectManager.WoW.MainModule.BaseAddress + (Int32)Offsets.WoWPlayerMe.ZoneText), 128); }
+            get { return ObjectManager.WoW.ReadASCIIString(ObjectManager.WoW.ReadUInt((uint)ObjectManager.WoW.MainModule.BaseAddress + (int)Offsets.WoWPlayerMe.ZoneText), 128); }
         }
 
         /// <summary>
@@ -80,23 +80,40 @@ namespace WoWObjectManager
         /// </summary>
         internal string SubZoneText
         {
-            get { return ObjectManager.WoW.ReadASCIIString(ObjectManager.WoW.ReadUInt((uint)ObjectManager.WoW.MainModule.BaseAddress + (Int32)Offsets.WoWPlayerMe.SubZoneText), 128); }
+            get { return ObjectManager.WoW.ReadASCIIString(ObjectManager.WoW.ReadUInt((uint)ObjectManager.WoW.MainModule.BaseAddress + (int)Offsets.WoWPlayerMe.SubZoneText), 128); }
         }
 
         /// <summary>
         /// The players base health
         /// </summary>
-        internal float BaseHealth
+        internal int BaseHealth
         {
-            get { return ObjectManager.WoW.ReadInt(ObjectManager.WoW.ReadUInt((uint)BaseAddress + (Int32)Offsets.Descriptors.Descriptor) + (Int32)Offsets.Descriptors.BaseHealth); }
+            get { return GetDescriptorField<int>((uint)Offsets.WoWUnit.Health); }
         }
 
         /// <summary>
         /// The players max health
         /// </summary>
-        internal float MaxHealth
+        internal int MaxHealth
         {
-            get { return ObjectManager.WoW.ReadInt(ObjectManager.WoW.ReadUInt((uint)BaseAddress + (Int32)Offsets.Descriptors.Descriptor) + (Int32)Offsets.Descriptors.MaxHealth); }
+            get { return GetDescriptorField<int>((uint)Offsets.WoWUnit.MaxHealth); }
+        }
+
+
+        /// <summary>
+        /// The players base power
+        /// </summary>
+        internal float BasePower
+        {
+            get { return ObjectManager.WoW.ReadInt((uint)DescriptorBase + (int)Offsets.WoWUnit.Power); }
+        }
+
+        /// <summary>
+        /// The players max power
+        /// </summary>
+        internal float MaxPower
+        {
+            get { return ObjectManager.WoW.ReadInt((uint)DescriptorBase + (int)Offsets.WoWUnit.MaxPower); }
         }
 
         /// <summary>
@@ -104,7 +121,23 @@ namespace WoWObjectManager
         /// </summary>
         internal int ComboPoints
         {
-            get { return ObjectManager.WoW.ReadInt((uint)ObjectManager.WoW.MainModule.BaseAddress + (Int32)Offsets.WoWPlayerMe.ComboPoints); }
+            get { return ObjectManager.WoW.ReadInt((uint)ObjectManager.WoW.MainModule.BaseAddress + (int)Offsets.WoWPlayerMe.ComboPoints); }
+        }
+
+        /// <summary>
+        /// The players current XP
+        /// </summary>
+        internal int XP
+        {
+            get { return GetDescriptorField<int>((uint)Offsets.WoWPlayerMe.XP); }
+        }
+
+        /// <summary>
+        /// The players current XP
+        /// </summary>
+        internal int MaxXP
+        {
+            get { return GetDescriptorField<int>((uint)Offsets.WoWPlayerMe.NextLevelXP); }
         }
 
         /// <summary>
@@ -114,24 +147,8 @@ namespace WoWObjectManager
         {
             get
             {
-                return (WoWClass)ObjectManager.WoW.ReadByte((uint)ObjectManager.WoW.MainModule.BaseAddress + (Int32) Offsets.WoWPlayerMe.PlayerClass);
+                return (WoWClass)ObjectManager.WoW.ReadByte((uint)ObjectManager.WoW.MainModule.BaseAddress + (int)Offsets.WoWPlayerMe.PlayerClass);
             }
-        }
-
-        /// <summary>
-        /// The players base power
-        /// </summary>
-        internal float BasePower
-        {
-            get { return ObjectManager.WoW.ReadInt(ObjectManager.WoW.ReadUInt((uint)BaseAddress + (Int32)Offsets.Descriptors.Descriptor) + (Int32)Offsets.Descriptors.BasePower); }
-        }
-
-        /// <summary>
-        /// The players max power
-        /// </summary>
-        internal float MaxPower
-        {
-            get { return ObjectManager.WoW.ReadInt(ObjectManager.WoW.ReadUInt((uint)BaseAddress + (Int32)Offsets.Descriptors.Descriptor) + (Int32)Offsets.Descriptors.MaxPower); }
         }
 
         /// <summary>
@@ -139,7 +156,7 @@ namespace WoWObjectManager
         /// </summary>
         internal float Level
         {
-            get { return ObjectManager.WoW.ReadInt(ObjectManager.WoW.ReadUInt((uint)BaseAddress + (Int32)Offsets.Descriptors.Descriptor) + (Int32)Offsets.Descriptors.Level); }
+            get { return ObjectManager.WoW.ReadInt((uint)DescriptorBase + (int)Offsets.WoWUnit.Level); }
         }
 
         /// <summary>
