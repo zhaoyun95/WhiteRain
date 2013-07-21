@@ -43,6 +43,7 @@
             this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.WoWPLocalPlayerList = new System.Windows.Forms.ListView();
             this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -75,13 +76,12 @@
             this.columnHeader27 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader29 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader33 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.LogBox = new System.Windows.Forms.RichTextBox();
             this.RefreshBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.LocalGUIDBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.LogBox = new System.Windows.Forms.RichTextBox();
-            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -166,11 +166,11 @@
             // 
             // columnHeader13
             // 
-            this.columnHeader13.Text = "Lootable";
+            this.columnHeader13.Text = "DynamicFlagTest";
             // 
             // columnHeader14
             // 
-            this.columnHeader14.Text = "NPCFlags*";
+            this.columnHeader14.Text = "NPCFlagTest";
             // 
             // columnHeader17
             // 
@@ -187,6 +187,10 @@
             // columnHeader20
             // 
             this.columnHeader20.Text = "CreatedBy";
+            // 
+            // columnHeader15
+            // 
+            this.columnHeader15.Text = "Position";
             // 
             // tabPage3
             // 
@@ -385,6 +389,25 @@
             // 
             this.columnHeader33.Text = "ItemInfo";
             // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.LogBox);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(975, 465);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Debug";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // LogBox
+            // 
+            this.LogBox.Location = new System.Drawing.Point(3, 0);
+            this.LogBox.Name = "LogBox";
+            this.LogBox.Size = new System.Drawing.Size(976, 469);
+            this.LogBox.TabIndex = 0;
+            this.LogBox.Text = "";
+            // 
             // RefreshBtn
             // 
             this.RefreshBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -420,29 +443,6 @@
             this.label2.Size = new System.Drawing.Size(179, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "*: R = Repair; F: Sells Food/Drinking";
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.LogBox);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(975, 465);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Debug";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // LogBox
-            // 
-            this.LogBox.Location = new System.Drawing.Point(3, 0);
-            this.LogBox.Name = "LogBox";
-            this.LogBox.Size = new System.Drawing.Size(976, 469);
-            this.LogBox.TabIndex = 0;
-            this.LogBox.Text = "";
-            // 
-            // columnHeader15
-            // 
-            this.columnHeader15.Text = "Position";
             // 
             // MainForm
             // 

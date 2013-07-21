@@ -62,14 +62,14 @@ namespace WoWObjectManager
         /// <summary>
         /// Initialize the ObjectManager and attaches BlackMagic to the processId.
         /// </summary>
-        internal static void Initialize()
+        internal static void Initialize(Process proc)
         {
             if (Initialized)
                 return;
 
             try
             {
-                WoW = new ExternalProcessReader((from Process p in Process.GetProcesses() where p.ProcessName == "Wow" select p).First());
+                WoW = new ExternalProcessReader(proc);
                 ObjMgr = WoW.Read<uint>((IntPtr) WoW.Read<uint>(WoW.ImageBase + (int)Offsets.ObjectManager.clientConnection) + (int) Offsets.ObjectManager.ObjectManager);
                 CurObj = WoW.Read<uint>((IntPtr) ObjMgr + (int) Offsets.ObjectManager.FirstObject);
 

@@ -135,12 +135,7 @@ namespace WoWObjectManager.Objects
         /// </summary>
         internal bool IsAlive
         {
-            get
-            {
-                if (BaseHealth > 0)
-                    return true;
-                return false;
-            }
+            get { return (HasFlag(Offsets.UnitDynamicFlags.Dead)) ? true : false; }
         }
 
         /// <summary>
@@ -149,16 +144,6 @@ namespace WoWObjectManager.Objects
         internal ulong TargetGUID
         {
             get { return GetDescriptorField<UInt64>((uint)Offsets.WoWUnit.Target); }
-        }
-
-        /// <summary>
-        /// Checks whether the unit has that npc flag or not
-        /// </summary>
-        /// <param name="flag">The NpcFlag</param>
-        /// <returns>true or false</returns>
-        internal bool HasNPCFlag(Offsets.WoWNpcFlags flag)
-        {
-            return NPCFlags[(int)flag];
         }
 
         /// <summary>
@@ -180,21 +165,31 @@ namespace WoWObjectManager.Objects
         }
 
         /// <summary>
+        /// Checks whether the unit has that npc flag or not
+        /// </summary>
+        /// <param name="flag">The NpcFlag</param>
+        /// <returns>true or false</returns>
+        internal bool HasFlag(Offsets.WoWNpcFlags flag)
+        {
+            return NPCFlags[(int)flag];
+        }
+
+        /// <summary>
+        /// Checks whether the unit has that npc flag or not
+        /// </summary>
+        /// <param name="flag">The NpcFlag</param>
+        /// <returns>true or false</returns>
+        internal dynamic HasFlag(Offsets.UnitDynamicFlags flag)
+        {
+            return DynamicFlags[(int)flag];
+        }
+
+        /// <summary>
         /// The units NPCFlags
         /// </summary>
         internal BitVector32 Flags
         {
             get { return GetDescriptorField<BitVector32>((uint)Offsets.WoWUnit.Flags); }
-        }
-
-        /// <summary>
-        /// Checks whether the unit has that dynamic flag or not
-        /// </summary>
-        /// <param name="flag">The DynamicFlag</param>
-        /// <returns>true or false</returns>
-        internal bool HasDynamicFlag(Offsets.UnitDynamicFlags flag)
-        {
-            return DynamicFlags[(int)flag];
         }
 
         /// <summary>
@@ -204,6 +199,7 @@ namespace WoWObjectManager.Objects
         {
             get { return GetDescriptorField<BitVector32>((uint)Offsets.WoWObject.DynamicFlags); }
         }
+
     }
 
 }

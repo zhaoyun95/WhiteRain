@@ -42,7 +42,7 @@ namespace WoWObjectManager
         {
             Type = 0xC,
             GUID = 0x28,
-            DynamicFlags = 0x16,
+            DynamicFlags = 0x18,
         }
 
         public enum WoWCorpse
@@ -330,15 +330,16 @@ namespace WoWObjectManager
         [Flags]
         public enum UnitDynamicFlags
         {
-            None = 0,
-            Lootable = 0x1,
-            TrackUnit = 0x2,
-            TaggedByOther = 0x4,
-            TaggedByMe = 0x8,
-            SpecialInfo = 0x10,
-            Dead = 0x20,
-            ReferAFriendLinked = 0x40,
-            IsTappedByAllThreatList = 0x80,
+            Invisible = 0x1,
+            Dead = 0x2, //100%
+            IsTappedByAllThreatList = 0x100,
+            Lootable = 0x2, // 100%
+            None = 0x0, // 100%
+            ReferAFriendLinked = 0x80,
+            SpecialInfo = 0x20,
+            TaggedByMe = 0x10, // 100%
+            TaggedByOther = 0x8, // 100%
+            TrackUnit = 0x4,
         }
 
         [Flags]

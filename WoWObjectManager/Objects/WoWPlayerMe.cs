@@ -114,6 +114,9 @@ namespace WoWObjectManager.Objects
                     case WoWClass.Rogue:
                         BasePower = ObjectManager.WoW.Read<int>((IntPtr)DescriptorBase + (int)Offsets.WoWUnit.Energy);
                         break;
+                    case WoWClass.Warrior:
+                        BasePower = ObjectManager.WoW.Read<int>((IntPtr)DescriptorBase + (int)Offsets.WoWUnit.Energy);
+                        break;
                     default:
                         BasePower = ObjectManager.WoW.Read<int>((IntPtr)DescriptorBase + (int)Offsets.WoWUnit.Power);
                         break;
@@ -184,19 +187,6 @@ namespace WoWObjectManager.Objects
         internal float Level
         {
             get { return ObjectManager.WoW.Read<int>((IntPtr)DescriptorBase + (int)Offsets.WoWUnit.Level); }
-        }
-
-        /// <summary>
-        /// Returns whether the player is alive or not.
-        /// </summary>
-        internal bool IsAlive
-        {
-            get
-            {
-                if (BaseHealth > 0)
-                    return true;
-                return false;
-            }
         }
     }
 }

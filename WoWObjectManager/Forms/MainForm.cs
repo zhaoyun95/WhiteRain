@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using WoWObjectManager.Objects;
 using WoWObjectManager;
+using System.Diagnostics;
 
 namespace WoWObjectManager.Forms
 {
@@ -20,7 +21,7 @@ namespace WoWObjectManager.Forms
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            ObjectManager.Initialize();
+            ObjectManager.Initialize((from Process p in Process.GetProcesses() where p.ProcessName == "Wow" select p).First());
             if (ObjectManager.Initialized)
                 LocalGUIDBox.Text = ObjectManager.Me.Guid.ToString();
         }
@@ -47,6 +48,9 @@ namespace WoWObjectManager.Forms
         {
             //This is only the visual stuff for the form
 
+            if (!ObjectManager.Initialized)
+                return;
+
             ObjectManager.Pulse();
 
             int index = 0;
@@ -56,7 +60,7 @@ namespace WoWObjectManager.Forms
             this.WoWPLocalPlayerList.Items.Clear();
             this.WoWItemList.Items.Clear();
 
-            foreach (WoWUnit WoWUnit in ObjectManager.WoWUnitList)
+            foreach (WoWUnit WoWUnit in ObjectManager.WoWUnitList.Where(o => !o.IsAlive || o.HasFlag(Offsets.UnitFlags.Combat)))
             {
                 LogBox.AppendText(string.Format("=== [WoWUnit] Flag dump ===" + Environment.NewLine));
                 LogBox.AppendText(string.Format("Name: {0}; HP: {1}/{2} {3}", WoWUnit.Name, WoWUnit.BaseHealth, WoWUnit.MaxHealth, Environment.NewLine));
@@ -75,12 +79,11 @@ namespace WoWObjectManager.Forms
                 this.WoWUnitList.Items.Add(index.ToString()).SubItems.AddRange(new string[] {
                     WoWUnit.Name, 
                     WoWUnit.DisplayId.ToString(), 
-                    string.Format("{0}/{1}", WoWUnit.BaseHealth, WoWUnit.MaxHealth),
+                    string.Format("{0}/{1} Dead: {2}", WoWUnit.BaseHealth, WoWUnit.MaxHealth, WoWUnit.HasFlag(Offsets.UnitDynamicFlags.Dead)),
                     string.Format("{0}/{1}", WoWUnit.BasePower, WoWUnit.MaxPower),
                     string.Format("InCombat: {0}", WoWUnit.HasFlag(Offsets.UnitFlags.Combat).ToString()),
-                    //string.Format("L: {0}", WoWUnit.HasDynamicFlag(Offsets.UnitDynamicFlags.Lootable).ToString()), //DynamicFlags
-                    "TBA",
-                    string.Format("R: {0} F: {1}", WoWUnit.HasNPCFlag(Offsets.WoWNpcFlags.CanRepair), WoWUnit.HasNPCFlag(Offsets.WoWNpcFlags.SellsFood)),
+                    string.Format("L: {0} TE: {1}", WoWUnit.HasFlag(Offsets.UnitDynamicFlags.Lootable).ToString(), WoWUnit.HasFlag(Offsets.UnitDynamicFlags.TaggedByOther)), //DynamicFlags
+                    string.Format("R: {0} F: {1}", WoWUnit.HasFlag(Offsets.WoWNpcFlags.CanRepair), WoWUnit.HasFlag(Offsets.WoWNpcFlags.SellsFood)),
                     WoWUnit.Level.ToString(),
                     WoWUnit.CharmedBy.ToString(),
                     WoWUnit.SummonedBy.ToString(),
