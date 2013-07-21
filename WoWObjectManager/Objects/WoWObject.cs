@@ -53,29 +53,6 @@ namespace WoWObjectManager.Objects
             get { return ObjectManager.WoW.ReadUInt64(this.BaseAddress + (int)Offsets.WoWObject.GUID); }
         }
 
-        
-        /// <summary>
-        /// Checks whether the unit has that dynamic flag or not
-        /// </summary>
-        /// <param name="flag">The dynamicFlag</param>
-        /// <returns>true or false</returns>
-        /*internal bool HasDynamicFlag(Offsets.UnitDynamicFlags flag)
-        {
-            return DynamicFlags[(int)flag];
-        }*/
-
-        /// <summary>
-        /// The objects dynamic flags
-        /// </summary> 
-        /*
-        internal dynamic DynamicFlags
-        {
-            get {
-                return ObjectManager.WoW.ReadByte(ObjectManager.WoW.ReadUInt(this.BaseAddress + 0x180));
-            }
-        }*/
-
-
         /// <summary>
         /// Gets the descriptor value
         /// </summary>
