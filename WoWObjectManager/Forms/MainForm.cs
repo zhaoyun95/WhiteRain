@@ -51,6 +51,7 @@ namespace WoWObjectManager.Forms
             this.WoWUnitList.Items.Clear();
             this.WoWCorpseList.Items.Clear();
             this.WoWPLocalPlayerList.Items.Clear();
+            this.WoWItemList.Items.Clear();
 
             //WoWUnitList
             index = 0;
@@ -113,6 +114,27 @@ namespace WoWObjectManager.Forms
 
                 index++;
             }
+
+            //WoWItemList
+            index = 0;
+            foreach (ulong GUID in ObjectManager.WoWItemList.Keys)
+            {
+                WoWItem WoWItem = ObjectManager.WoWItemList[GUID];
+
+                this.WoWItemList.Items.Add(index.ToString()).SubItems.AddRange(new string[] {
+                    WoWItem.Owner.ToString(),
+                    string.Format("{0}/{1} ({2}%)", WoWItem.Durability, WoWItem.MaxDurability, WoWItem.DurabilityPercent),
+                    WoWItem.StackCount.ToString(),
+                    WoWItem.Charges.ToString(),
+                    WoWItem.ContainedIn.ToString(),
+                    WoWItem.DynamicFlags.ToString(),
+                    WoWItem.HasFlag(Offsets.WoWItemFlags.ItemFlagSoulbound).ToString(),
+                    WoWItem.GetItemInfo.ToString()
+                 });
+
+                index++;
+            }
+
 
             ResizeColumnHeaders();
         }

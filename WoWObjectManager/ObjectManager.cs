@@ -35,6 +35,11 @@ namespace WoWObjectManager
         internal static IDictionary<ulong, WoWCorpse> WoWCorpseList = new Dictionary<ulong, WoWCorpse>();
 
         /// <summary>
+        /// A list of all items.
+        /// </summary>
+        internal static IDictionary<ulong, WoWItem> WoWItemList = new Dictionary<ulong, WoWItem>();
+
+        /// <summary>
         /// Storage 
         /// </summary>
         internal static uint CurObj, ObjMgr;
@@ -94,6 +99,8 @@ namespace WoWObjectManager
                 WoWUnitList.Clear();
             if (WoWCorpseList.Count > 0)
                 WoWCorpseList.Clear();
+            if (WoWItemList.Count > 0)
+                WoWItemList.Clear();
 
             while (CurObj != 0 && (CurObj & 1) == 0)
             {
@@ -105,6 +112,10 @@ namespace WoWObjectManager
 
                 switch (WoWObject.Type)
                 {
+                    case (int) WoWObjectType.Item:
+                        WoWItem WoWItem = new WoWItem(CurObj);
+                        WoWItemList.Add(WoWItem.Guid, WoWItem);
+                        break;
                     case (int) WoWObjectType.Corpse:
                         WoWCorpse WoWCorpse = new WoWCorpse(CurObj);
                         WoWCorpseList.Add(WoWCorpse.Guid, WoWCorpse);

@@ -9,6 +9,7 @@
  */
 
 using System.Collections.Specialized;
+
 namespace WoWObjectManager.Objects
 {
     /// <summary>
@@ -49,7 +50,7 @@ namespace WoWObjectManager.Objects
         /// </summary>
         internal int DisplayId
         {
-            get { return ObjectManager.WoW.ReadInt((uint)DescriptorBase + (int)Offsets.WoWCorpse.DisplayID); }
+            get { return GetDescriptorField<int>((uint)Offsets.WoWCorpse.DisplayID); }
         }
 
         /// <summary>

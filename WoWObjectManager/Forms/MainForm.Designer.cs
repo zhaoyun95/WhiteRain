@@ -70,10 +70,22 @@
             this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.WoWItemList = new System.Windows.Forms.ListView();
+            this.columnHeader25 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader32 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader28 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader30 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader31 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader26 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader27 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader29 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader33 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -81,6 +93,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(0, 32);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -224,7 +237,7 @@
             // RefreshBtn
             // 
             this.RefreshBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RefreshBtn.Location = new System.Drawing.Point(803, 12);
+            this.RefreshBtn.Location = new System.Drawing.Point(893, 11);
             this.RefreshBtn.Name = "RefreshBtn";
             this.RefreshBtn.Size = new System.Drawing.Size(75, 23);
             this.RefreshBtn.TabIndex = 1;
@@ -348,6 +361,72 @@
             // 
             this.columnHeader21.Text = "Level";
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.WoWItemList);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(975, 465);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "WoWItem";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // WoWItemList
+            // 
+            this.WoWItemList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader25,
+            this.columnHeader32,
+            this.columnHeader28,
+            this.columnHeader30,
+            this.columnHeader31,
+            this.columnHeader26,
+            this.columnHeader27,
+            this.columnHeader29,
+            this.columnHeader33});
+            this.WoWItemList.Location = new System.Drawing.Point(0, 0);
+            this.WoWItemList.Name = "WoWItemList";
+            this.WoWItemList.Size = new System.Drawing.Size(975, 465);
+            this.WoWItemList.TabIndex = 2;
+            this.WoWItemList.UseCompatibleStateImageBehavior = false;
+            this.WoWItemList.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader25
+            // 
+            this.columnHeader25.Text = "Id";
+            this.columnHeader25.Width = 40;
+            // 
+            // columnHeader32
+            // 
+            this.columnHeader32.Text = "OwnerGUID";
+            // 
+            // columnHeader28
+            // 
+            this.columnHeader28.Text = "Durability";
+            // 
+            // columnHeader30
+            // 
+            this.columnHeader30.Text = "StackCount";
+            // 
+            // columnHeader31
+            // 
+            this.columnHeader31.Text = "Charges";
+            // 
+            // columnHeader26
+            // 
+            this.columnHeader26.Text = "ContainedIn";
+            // 
+            // columnHeader27
+            // 
+            this.columnHeader27.Text = "DynamicFlags";
+            // 
+            // columnHeader29
+            // 
+            this.columnHeader29.Text = "Soulbound (exmaple)";
+            // 
+            // columnHeader33
+            // 
+            this.columnHeader33.Text = "ItemInfo";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -367,6 +446,7 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -416,5 +496,16 @@
         private System.Windows.Forms.ColumnHeader columnHeader23;
         private System.Windows.Forms.ColumnHeader columnHeader24;
         private System.Windows.Forms.ColumnHeader columnHeader21;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.ListView WoWItemList;
+        private System.Windows.Forms.ColumnHeader columnHeader25;
+        private System.Windows.Forms.ColumnHeader columnHeader32;
+        private System.Windows.Forms.ColumnHeader columnHeader28;
+        private System.Windows.Forms.ColumnHeader columnHeader30;
+        private System.Windows.Forms.ColumnHeader columnHeader31;
+        private System.Windows.Forms.ColumnHeader columnHeader26;
+        private System.Windows.Forms.ColumnHeader columnHeader27;
+        private System.Windows.Forms.ColumnHeader columnHeader29;
+        private System.Windows.Forms.ColumnHeader columnHeader33;
     }
 }

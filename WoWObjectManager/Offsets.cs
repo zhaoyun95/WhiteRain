@@ -168,6 +168,25 @@ namespace WoWObjectManager
             ItemLevelDelta = 0x1EE8
         }
 
+        public enum WoWItem
+        {
+            Owner = 0x20,
+            ContainedIn = 0x28,
+            Creator = 0x30,
+            GiftCreator = 0x38,
+            StackCount = 0x40,
+            Expiration = 0x44,
+            SpellCharges = 0x48,
+            DynamicFlags = 0x5C,
+            Enchantment = 0x60,
+            PropertySeed = 0xFC,
+            RandomPropertiesID = 0x100,
+            Durability = 0x104,
+            MaxDurability = 0x108,
+            CreatePlayedTime = 0x10C,
+            ModifiersMask = 0x110,
+        }
+
         public enum WoWUnit
         {
             NamePointer = 0x974,
@@ -251,7 +270,29 @@ namespace WoWObjectManager
             MaxItemLevel = 0x260,
             WildBattlePetLevel = 0x264,
             BattlePetCompanionNameTimestamp = 0x268,
-        };
+        }
+
+        [Flags]
+        public enum WoWItemFlags : uint
+        {
+            ItemFlagNone = 0x0,
+            ItemFlagSoulbound = 0x1,
+            ItemFlagConjured = 0x2,
+            ItemFlagLootable = 0x4,
+            ItemFlagWrapGift = 0x200,
+            ItemFlagCreateItem = 0x400,
+            ItemFlagQuest = 0x800,
+            ItemFlagRefundable = 0x1000,
+            ItemFlagSignable = 0x2000,
+            ItemFlagReadable = 0x4000,
+            ItemFlagEventReq = 0x10000,
+            ItemFlagProspectable = 0x40000,
+            ItemFlagUniqueEquip = 0x80000,
+            ItemFlagThrown = 0x400000,
+            ItemFlagShapeshiftOK = 0x800000,
+            ItemFlagAccountBound = 0x8000000,
+            ItemFlagMillable = 0x20000000
+        }
 
         [Flags]
         public enum UnitFlags : uint
@@ -342,7 +383,7 @@ namespace WoWObjectManager
 
     public enum WoWObjectType
     {
-        Item = 0,
+        Item = 1,
         Container = 2,
         Unit = 3,
         Player = 4,

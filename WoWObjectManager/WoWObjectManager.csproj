@@ -60,6 +60,7 @@
     </Compile>
     <Compile Include="ObjectManager.cs" />
     <Compile Include="Objects\WoWCorpse.cs" />
+    <Compile Include="Objects\WoWItem.cs" />
     <Compile Include="Objects\WoWObject.cs" />
     <Compile Include="Objects\WoWPlayerMe.cs" />
     <Compile Include="Objects\WoWUnit.cs" />
