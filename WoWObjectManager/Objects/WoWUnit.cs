@@ -33,11 +33,11 @@ namespace WoWObjectManager.Objects
         {
             get
             {
-                return new Vector3(
-                    GetDescriptorField<float>((uint)Offsets.WoWUnit.X),
-                    GetDescriptorField<float>((uint)Offsets.WoWUnit.Y),
-                    GetDescriptorField<float>((uint)Offsets.WoWUnit.Z)
-                    );
+                return new Vector3 {
+                    X = ObjectManager.WoW.Read<float>((IntPtr)BaseAddress + (int)Offsets.WoWUnit.X),
+                    Y = ObjectManager.WoW.Read<float>((IntPtr)BaseAddress + (int)Offsets.WoWUnit.Y),
+                    Z = ObjectManager.WoW.Read<float>((IntPtr)BaseAddress + (int)Offsets.WoWUnit.Z)
+                };
             }
         }
 

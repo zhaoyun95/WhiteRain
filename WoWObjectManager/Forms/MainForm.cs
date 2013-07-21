@@ -85,6 +85,7 @@ namespace WoWObjectManager.Forms
                     WoWUnit.CharmedBy.ToString(),
                     WoWUnit.SummonedBy.ToString(),
                     WoWUnit.CreatedBy.ToString(),
+                    string.Format("X: {0} Y: {1} Z: {2}", WoWUnit.Position.X, WoWUnit.Position.Y, WoWUnit.Position.Z)
                  });
 
                 index++;

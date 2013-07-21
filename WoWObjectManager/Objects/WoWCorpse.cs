@@ -76,15 +76,15 @@ namespace WoWObjectManager.Objects
             {
                 if (MyCorpse)
                 {
-                    return new Vector3(
-                        ObjectManager.WoW.Read<float>((IntPtr)ObjectManager.WoW.ImageBase + (int)Offsets.WoWCorpse.Player_Corpse_X),
-                        ObjectManager.WoW.Read<float>((IntPtr)ObjectManager.WoW.ImageBase + (int)Offsets.WoWCorpse.Player_Corpse_Y),
-                        ObjectManager.WoW.Read<float>((IntPtr)ObjectManager.WoW.ImageBase + (int)Offsets.WoWCorpse.Player_Corpse_Z)
-                        );
+                    return new Vector3{
+                        X = ObjectManager.WoW.Read<float>((IntPtr)ObjectManager.WoW.ImageBase + (int)Offsets.WoWCorpse.Player_Corpse_X),
+                        Y = ObjectManager.WoW.Read<float>((IntPtr)ObjectManager.WoW.ImageBase + (int)Offsets.WoWCorpse.Player_Corpse_Y),
+                        Z = ObjectManager.WoW.Read<float>((IntPtr)ObjectManager.WoW.ImageBase + (int)Offsets.WoWCorpse.Player_Corpse_Z)
+                    };
                 }
                 else
                 {
-                    return new Vector3(0, 0, 0);
+                    return new Vector3 { X = 0, Y = 0, Z = 0 };
                 }
             }
         }

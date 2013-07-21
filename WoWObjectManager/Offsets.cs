@@ -396,17 +396,10 @@ namespace WoWObjectManager
         AreaTrigger = 9
     }
 
-    public class Vector3
+    public struct Vector3
     {
-        internal float X { get; set; }
-        internal float Y { get; set; }
-        internal float Z { get; set; }
-
-        public Vector3(float X, float Y, float Z)
-        {
-            this.X = X;
-            this.Y = Y;
-            this.Z = Z;
-        }
-    }
+        public float X;
+        public float Y;
+        public float Z;
+    };
 }

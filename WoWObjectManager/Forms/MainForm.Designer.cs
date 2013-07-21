@@ -81,6 +81,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.LogBox = new System.Windows.Forms.RichTextBox();
+            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -127,7 +128,8 @@
             this.columnHeader17,
             this.columnHeader18,
             this.columnHeader19,
-            this.columnHeader20});
+            this.columnHeader20,
+            this.columnHeader15});
             this.WoWUnitList.Location = new System.Drawing.Point(0, 0);
             this.WoWUnitList.Name = "WoWUnitList";
             this.WoWUnitList.Size = new System.Drawing.Size(972, 469);
@@ -438,6 +440,10 @@
             this.LogBox.TabIndex = 0;
             this.LogBox.Text = "";
             // 
+            // columnHeader15
+            // 
+            this.columnHeader15.Text = "Position";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -519,5 +525,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader33;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.RichTextBox LogBox;
+        private System.Windows.Forms.ColumnHeader columnHeader15;
     }
 }
