@@ -10,6 +10,7 @@
 
 using System;
 using System.Collections.Specialized;
+using System.Text;
 
 namespace WoWObjectManager.Objects
 {
@@ -45,7 +46,7 @@ namespace WoWObjectManager.Objects
         /// </summary>
         internal string Name
         {
-            get { return ObjectManager.WoW.ReadASCIIString(ObjectManager.WoW.ReadUInt(ObjectManager.WoW.ReadUInt(BaseAddress + (int)Offsets.WoWUnit.NamePointer) + (int) Offsets.WoWUnit.NameOffset), 100); }
+            get { return ObjectManager.WoW.ReadString((IntPtr) ObjectManager.WoW.Read<uint>((IntPtr) ObjectManager.WoW.Read<uint>((IntPtr) BaseAddress + (int)Offsets.WoWUnit.NamePointer) + (int) Offsets.WoWUnit.NameOffset), Encoding.ASCII); }
         }
 
         /// <summary>
@@ -184,6 +185,24 @@ namespace WoWObjectManager.Objects
         internal BitVector32 Flags
         {
             get { return GetDescriptorField<BitVector32>((uint)Offsets.WoWUnit.Flags); }
+        }
+
+        /// <summary>
+        /// Checks whether the unit has that dynamic flag or not
+        /// </summary>
+        /// <param name="flag">The DynamicFlag</param>
+        /// <returns>true or false</returns>
+        internal bool HasDynamicFlag(Offsets.UnitDynamicFlags flag)
+        {
+            return DynamicFlags[(int)flag];
+        }
+
+        /// <summary>
+        /// The objects DynamicFlags
+        /// </summary>
+        internal BitVector32 DynamicFlags
+        {
+            get { return GetDescriptorField<BitVector32>((uint)Offsets.WoWObject.DynamicFlags); }
         }
     }
 

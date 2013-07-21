@@ -39,21 +39,7 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.WoWCorpseList = new System.Windows.Forms.ListView();
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.RefreshBtn = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.LocalGUIDBox = new System.Windows.Forms.TextBox();
             this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label2 = new System.Windows.Forms.Label();
             this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -68,8 +54,16 @@
             this.columnHeader43 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader44 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.WoWCorpseList = new System.Windows.Forms.ListView();
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.WoWItemList = new System.Windows.Forms.ListView();
             this.columnHeader25 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -81,11 +75,18 @@
             this.columnHeader27 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader29 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader33 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.RefreshBtn = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.LocalGUIDBox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.LogBox = new System.Windows.Forms.RichTextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -94,6 +95,7 @@
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Location = new System.Drawing.Point(0, 32);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -122,8 +124,6 @@
             this.columnHeader6,
             this.columnHeader13,
             this.columnHeader14,
-            this.columnHeader15,
-            this.columnHeader16,
             this.columnHeader17,
             this.columnHeader18,
             this.columnHeader19,
@@ -170,109 +170,9 @@
             // 
             this.columnHeader14.Text = "NPCFlags*";
             // 
-            // columnHeader15
-            // 
-            this.columnHeader15.Text = "DynamicFlags";
-            // 
-            // columnHeader16
-            // 
-            this.columnHeader16.Text = "UnitRelation";
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.WoWCorpseList);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(975, 465);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "WoWCorpse";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // WoWCorpseList
-            // 
-            this.WoWCorpseList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader7,
-            this.columnHeader8,
-            this.columnHeader10,
-            this.columnHeader9,
-            this.columnHeader11,
-            this.columnHeader12,
-            this.columnHeader24});
-            this.WoWCorpseList.Location = new System.Drawing.Point(0, 0);
-            this.WoWCorpseList.Name = "WoWCorpseList";
-            this.WoWCorpseList.Size = new System.Drawing.Size(975, 465);
-            this.WoWCorpseList.TabIndex = 1;
-            this.WoWCorpseList.UseCompatibleStateImageBehavior = false;
-            this.WoWCorpseList.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "Id";
-            this.columnHeader7.Width = 40;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "OwnerGUID";
-            this.columnHeader8.Width = 180;
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "Owner";
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "DisplayId";
-            // 
-            // columnHeader11
-            // 
-            this.columnHeader11.Text = "Flags";
-            this.columnHeader11.Width = 70;
-            // 
-            // columnHeader12
-            // 
-            this.columnHeader12.Text = "DynamicFlags";
-            this.columnHeader12.Width = 100;
-            // 
-            // RefreshBtn
-            // 
-            this.RefreshBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RefreshBtn.Location = new System.Drawing.Point(893, 11);
-            this.RefreshBtn.Name = "RefreshBtn";
-            this.RefreshBtn.Size = new System.Drawing.Size(75, 23);
-            this.RefreshBtn.TabIndex = 1;
-            this.RefreshBtn.Text = "Refresh";
-            this.RefreshBtn.UseVisualStyleBackColor = true;
-            this.RefreshBtn.Click += new System.EventHandler(this.RefreshBtn_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "LocalGUID:";
-            // 
-            // LocalGUIDBox
-            // 
-            this.LocalGUIDBox.Location = new System.Drawing.Point(70, 6);
-            this.LocalGUIDBox.Name = "LocalGUIDBox";
-            this.LocalGUIDBox.Size = new System.Drawing.Size(173, 20);
-            this.LocalGUIDBox.TabIndex = 3;
-            // 
             // columnHeader17
             // 
             this.columnHeader17.Text = "Level";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(305, 16);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(179, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "*: R = Repair; F: Sells Food/Drinking";
             // 
             // columnHeader18
             // 
@@ -353,13 +253,69 @@
             // 
             this.columnHeader23.Text = "Class";
             // 
-            // columnHeader24
-            // 
-            this.columnHeader24.Text = "Position (only for our own coprse)";
-            // 
             // columnHeader21
             // 
             this.columnHeader21.Text = "Level";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.WoWCorpseList);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(975, 465);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "WoWCorpse";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // WoWCorpseList
+            // 
+            this.WoWCorpseList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader7,
+            this.columnHeader8,
+            this.columnHeader10,
+            this.columnHeader9,
+            this.columnHeader11,
+            this.columnHeader12,
+            this.columnHeader24});
+            this.WoWCorpseList.Location = new System.Drawing.Point(0, 0);
+            this.WoWCorpseList.Name = "WoWCorpseList";
+            this.WoWCorpseList.Size = new System.Drawing.Size(975, 465);
+            this.WoWCorpseList.TabIndex = 1;
+            this.WoWCorpseList.UseCompatibleStateImageBehavior = false;
+            this.WoWCorpseList.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Id";
+            this.columnHeader7.Width = 40;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "OwnerGUID";
+            this.columnHeader8.Width = 180;
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "Owner";
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "DisplayId";
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "Flags";
+            this.columnHeader11.Width = 70;
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Text = "DynamicFlags";
+            this.columnHeader12.Width = 100;
+            // 
+            // columnHeader24
+            // 
+            this.columnHeader24.Text = "Position (only for our own coprse)";
             // 
             // tabPage4
             // 
@@ -427,6 +383,61 @@
             // 
             this.columnHeader33.Text = "ItemInfo";
             // 
+            // RefreshBtn
+            // 
+            this.RefreshBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RefreshBtn.Location = new System.Drawing.Point(893, 11);
+            this.RefreshBtn.Name = "RefreshBtn";
+            this.RefreshBtn.Size = new System.Drawing.Size(75, 23);
+            this.RefreshBtn.TabIndex = 1;
+            this.RefreshBtn.Text = "Refresh";
+            this.RefreshBtn.UseVisualStyleBackColor = true;
+            this.RefreshBtn.Click += new System.EventHandler(this.RefreshBtn_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(1, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(63, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "LocalGUID:";
+            // 
+            // LocalGUIDBox
+            // 
+            this.LocalGUIDBox.Location = new System.Drawing.Point(70, 6);
+            this.LocalGUIDBox.Name = "LocalGUIDBox";
+            this.LocalGUIDBox.Size = new System.Drawing.Size(173, 20);
+            this.LocalGUIDBox.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(305, 16);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(179, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "*: R = Repair; F: Sells Food/Drinking";
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.LogBox);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(975, 465);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Debug";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // LogBox
+            // 
+            this.LogBox.Location = new System.Drawing.Point(3, 0);
+            this.LogBox.Name = "LogBox";
+            this.LogBox.Size = new System.Drawing.Size(976, 469);
+            this.LogBox.TabIndex = 0;
+            this.LogBox.Text = "";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -444,9 +455,10 @@
             this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -476,8 +488,6 @@
         private System.Windows.Forms.TextBox LocalGUIDBox;
         private System.Windows.Forms.ColumnHeader columnHeader13;
         private System.Windows.Forms.ColumnHeader columnHeader14;
-        private System.Windows.Forms.ColumnHeader columnHeader15;
-        private System.Windows.Forms.ColumnHeader columnHeader16;
         private System.Windows.Forms.ColumnHeader columnHeader17;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ColumnHeader columnHeader18;
@@ -507,5 +517,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader27;
         private System.Windows.Forms.ColumnHeader columnHeader29;
         private System.Windows.Forms.ColumnHeader columnHeader33;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.RichTextBox LogBox;
     }
 }

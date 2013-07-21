@@ -8,7 +8,7 @@
  *
  */
 
-using Magic;
+using GreyMagic;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -20,24 +20,24 @@ namespace WoWObjectManager
     class ObjectManager
     {
         /// <summary>
-        /// BlackMagic instance.
+        /// GreyMagic instance. ♥
         /// </summary>
-        internal static BlackMagic WoW { get; set; }
+        internal static ExternalProcessReader WoW { get; set; }
 
         /// <summary>
         /// A list of all units.
         /// </summary>
-        internal static IDictionary<ulong, WoWUnit> WoWUnitList = new Dictionary<ulong, WoWUnit>();
+        internal static List<WoWUnit> WoWUnitList = new List<WoWUnit>();
 
         /// <summary>
         /// A list of all corpses.
         /// </summary>
-        internal static IDictionary<ulong, WoWCorpse> WoWCorpseList = new Dictionary<ulong, WoWCorpse>();
+        internal static List<WoWCorpse> WoWCorpseList = new List<WoWCorpse>();
 
         /// <summary>
         /// A list of all items.
         /// </summary>
-        internal static IDictionary<ulong, WoWItem> WoWItemList = new Dictionary<ulong, WoWItem>();
+        internal static List<WoWItem> WoWItemList = new List<WoWItem>();
 
         /// <summary>
         /// Storage 
@@ -69,11 +69,11 @@ namespace WoWObjectManager
 
             try
             {
-                WoW = new BlackMagic((from Process p in Process.GetProcesses() where p.ProcessName == "Wow" select p.Id).First());
-                ObjMgr = WoW.ReadUInt(WoW.ReadUInt((uint)WoW.MainModule.BaseAddress + (uint)Offsets.ObjectManager.clientConnection) + (uint)Offsets.ObjectManager.ObjectManager);
-                CurObj = WoW.ReadUInt(ObjMgr + (int)Offsets.ObjectManager.FirstObject);
+                WoW = new ExternalProcessReader((from Process p in Process.GetProcesses() where p.ProcessName == "Wow" select p).First());
+                ObjMgr = WoW.Read<uint>((IntPtr) WoW.Read<uint>(WoW.ImageBase + (int)Offsets.ObjectManager.clientConnection) + (int) Offsets.ObjectManager.ObjectManager);
+                CurObj = WoW.Read<uint>((IntPtr) ObjMgr + (int) Offsets.ObjectManager.FirstObject);
 
-                PlayerGUID = WoW.ReadUInt64(ObjMgr + (int)Offsets.ObjectManager.LocalGUID);
+                PlayerGUID = WoW.Read<ulong>((IntPtr) ObjMgr + (int) Offsets.ObjectManager.LocalGUID);
 
                 Initialized = true;
                 Pulse();
@@ -93,7 +93,7 @@ namespace WoWObjectManager
             if (!Initialized)
                 return;
 
-            CurObj = WoW.ReadUInt(ObjMgr + (int)Offsets.ObjectManager.FirstObject);
+            CurObj = WoW.Read<uint>((IntPtr) ObjMgr + (int) Offsets.ObjectManager.FirstObject);
 
             if (WoWUnitList.Count > 0)
                 WoWUnitList.Clear();
@@ -105,7 +105,7 @@ namespace WoWObjectManager
             while (CurObj != 0 && (CurObj & 1) == 0)
             {
                 WoWObject WoWObject = new WoWObject(CurObj);
-                uint NextObj = WoW.ReadUInt(CurObj + (int)Offsets.ObjectManager.NextObject);
+                uint NextObj = WoW.Read<uint>((IntPtr) CurObj + (int) Offsets.ObjectManager.NextObject);
 
                 if (WoWObject.Guid == PlayerGUID)
                     Me = new WoWPlayerMe(CurObj);
@@ -113,16 +113,16 @@ namespace WoWObjectManager
                 switch (WoWObject.Type)
                 {
                     case (int) WoWObjectType.Item:
-                        WoWItem WoWItem = new WoWItem(CurObj);
-                        WoWItemList.Add(WoWItem.Guid, WoWItem);
+                        WoWItemList.Add(new WoWItem(CurObj));
                         break;
                     case (int) WoWObjectType.Corpse:
-                        WoWCorpse WoWCorpse = new WoWCorpse(CurObj);
-                        WoWCorpseList.Add(WoWCorpse.Guid, WoWCorpse);
+                        WoWCorpseList.Add(new WoWCorpse(CurObj));
                         break;
                     case (int) WoWObjectType.Unit:
-                        WoWUnit WoWUnit = new WoWUnit(CurObj);
-                        WoWUnitList.Add(WoWUnit.Guid, WoWUnit);
+                        WoWUnitList.Add(new WoWUnit(CurObj));
+                        break;
+                    case (int) WoWObjectType.Container:
+
                         break;
                 }
 

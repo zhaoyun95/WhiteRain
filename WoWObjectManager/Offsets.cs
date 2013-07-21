@@ -42,7 +42,7 @@ namespace WoWObjectManager
         {
             Type = 0xC,
             GUID = 0x28,
-            DynamicFlags = 0x18,
+            DynamicFlags = 0x16,
         }
 
         public enum WoWCorpse
@@ -211,6 +211,8 @@ namespace WoWObjectManager
             Power = 0x7C,
             MaxHealth = 0x90,
             MaxPower = 0x94,
+            Energy = Power + 0x4,
+            MaxEnergy = Energy + 0x4, //Dunno what this is
             PowerRegenFlatModifier = 0xA8,
             PowerRegenInterruptedFlatModifier = 0xBC,
             Level = 0xD0,

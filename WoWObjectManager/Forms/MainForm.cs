@@ -29,12 +29,15 @@ namespace WoWObjectManager.Forms
         {
             foreach (TabPage tabPage in tabControl1.TabPages)
             {
-                foreach (ListView cntrl in tabPage.Controls)
+                foreach (Control cntrl in tabPage.Controls)
                 {
-                    for (int i = 0; i < cntrl.Columns.Count - 1; i++)
+                    if (cntrl is ListView)
                     {
-                        cntrl.AutoResizeColumn(i, ColumnHeaderAutoResizeStyle.HeaderSize);
-                        cntrl.Columns[cntrl.Columns.Count - 1].Width = -2;
+                        for (int i = 0; i < ((ListView)cntrl).Columns.Count - 1; i++)
+                        {
+                            ((ListView)cntrl).AutoResizeColumn(i, ColumnHeaderAutoResizeStyle.HeaderSize);
+                            ((ListView)cntrl).Columns[((ListView)cntrl).Columns.Count - 1].Width = -2;
+                        }
                     }
                 }
             }
@@ -53,28 +56,35 @@ namespace WoWObjectManager.Forms
             this.WoWPLocalPlayerList.Items.Clear();
             this.WoWItemList.Items.Clear();
 
+            foreach (WoWUnit WoWUnit in ObjectManager.WoWUnitList)
+            {
+                LogBox.AppendText(string.Format("=== [WoWUnit] Flag dump ===" + Environment.NewLine));
+                LogBox.AppendText(string.Format("Name: {0}; HP: {1}/{2} {3}", WoWUnit.Name, WoWUnit.BaseHealth, WoWUnit.MaxHealth, Environment.NewLine));
+                foreach (Offsets.UnitFlags flag in Enum.GetValues(typeof(Offsets.UnitFlags)))
+                {
+                    LogBox.AppendText(string.Format("{0}: {1} {2}", flag, WoWUnit.HasFlag(flag).ToString(), Environment.NewLine));
+                }
+                LogBox.AppendText(string.Format(Environment.NewLine));
+            }
+
+
             //WoWUnitList
             index = 0;
-            foreach (ulong GUID in ObjectManager.WoWUnitList.Keys)
+            foreach (WoWUnit WoWUnit in ObjectManager.WoWUnitList)
             {
-                WoWUnit WoWUnit = ObjectManager.WoWUnitList[GUID];
-
                 this.WoWUnitList.Items.Add(index.ToString()).SubItems.AddRange(new string[] {
                     WoWUnit.Name, 
                     WoWUnit.DisplayId.ToString(), 
                     string.Format("{0}/{1}", WoWUnit.BaseHealth, WoWUnit.MaxHealth),
                     string.Format("{0}/{1}", WoWUnit.BasePower, WoWUnit.MaxPower),
-                    "",
-                    "",
+                    string.Format("InCombat: {0}", WoWUnit.HasFlag(Offsets.UnitFlags.Combat).ToString()),
+                    //string.Format("L: {0}", WoWUnit.HasDynamicFlag(Offsets.UnitDynamicFlags.Lootable).ToString()), //DynamicFlags
+                    "TBA",
                     string.Format("R: {0} F: {1}", WoWUnit.HasNPCFlag(Offsets.WoWNpcFlags.CanRepair), WoWUnit.HasNPCFlag(Offsets.WoWNpcFlags.SellsFood)),
-                    //string.Format("L: {0}", WoWUnit.HasDynamicFlag(Offsets.UnitDynamicFlags.Lootable).ToString()),
-                    "DynamicFlag",
-                    "FactionTemplate",
                     WoWUnit.Level.ToString(),
                     WoWUnit.CharmedBy.ToString(),
                     WoWUnit.SummonedBy.ToString(),
                     WoWUnit.CreatedBy.ToString(),
-                    "DynamicFlags"
                  });
 
                 index++;
@@ -99,10 +109,8 @@ namespace WoWObjectManager.Forms
 
             //WoWCorpseList
             index = 0;
-            foreach (ulong GUID in ObjectManager.WoWCorpseList.Keys)
+            foreach (WoWCorpse WoWCorpse in ObjectManager.WoWCorpseList)
             {
-                WoWCorpse WoWCorpse = ObjectManager.WoWCorpseList[GUID];
-
                 this.WoWCorpseList.Items.Add(index.ToString()).SubItems.AddRange(new string[] {
                     WoWCorpse.Owner.ToString(),
                     WoWCorpse.MyCorpse.ToString(),
@@ -117,10 +125,8 @@ namespace WoWObjectManager.Forms
 
             //WoWItemList
             index = 0;
-            foreach (ulong GUID in ObjectManager.WoWItemList.Keys)
+            foreach (WoWItem WoWItem in ObjectManager.WoWItemList)
             {
-                WoWItem WoWItem = ObjectManager.WoWItemList[GUID];
-
                 this.WoWItemList.Items.Add(index.ToString()).SubItems.AddRange(new string[] {
                     WoWItem.Owner.ToString(),
                     string.Format("{0}/{1} ({2}%)", WoWItem.Durability, WoWItem.MaxDurability, WoWItem.DurabilityPercent),
@@ -129,7 +135,7 @@ namespace WoWObjectManager.Forms
                     WoWItem.ContainedIn.ToString(),
                     WoWItem.DynamicFlags.ToString(),
                     WoWItem.HasFlag(Offsets.WoWItemFlags.ItemFlagSoulbound).ToString(),
-                    WoWItem.GetItemInfo.ToString()
+                   
                  });
 
                 index++;

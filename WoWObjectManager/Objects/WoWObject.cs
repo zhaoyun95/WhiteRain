@@ -34,7 +34,7 @@ namespace WoWObjectManager.Objects
 
         internal uint DescriptorBase
         {
-            get { return ObjectManager.WoW.ReadUInt((uint)this.BaseAddress + (int)Offsets.Descriptors.Descriptor); }
+            get { return ObjectManager.WoW.Read<uint>((IntPtr)this.BaseAddress + (int)Offsets.Descriptors.Descriptor); }
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace WoWObjectManager.Objects
         /// </summary>
         internal int Type
         {
-            get { return ObjectManager.WoW.ReadInt(this.BaseAddress + (int)Offsets.WoWObject.Type); }
+            get { return ObjectManager.WoW.Read<int>((IntPtr) this.BaseAddress + (int)Offsets.WoWObject.Type); }
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace WoWObjectManager.Objects
         /// </summary>
         internal ulong Guid
         {
-            get { return ObjectManager.WoW.ReadUInt64(this.BaseAddress + (int)Offsets.WoWObject.GUID); }
+            get { return ObjectManager.WoW.Read<ulong>((IntPtr) this.BaseAddress + (int)Offsets.WoWObject.GUID); }
         }
 
         /// <summary>
@@ -59,10 +59,9 @@ namespace WoWObjectManager.Objects
         /// <typeparam name="type">The type</typeparam>
         /// <param name="field">Descriptor</param>
         /// <returns>Descript value</returns>
-        internal type GetDescriptorField<type>(uint field) where type : struct
+        internal T GetDescriptorField<T>(uint field) where T : struct
         {
-            return (type)ObjectManager.WoW.ReadObject(this.DescriptorBase + field, typeof(type));
+            return (T) ObjectManager.WoW.Read<T>((IntPtr) this.DescriptorBase + (int) field);
         }
-
     }
 }

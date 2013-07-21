@@ -8,6 +8,7 @@
  *
  */
 
+using System;
 using System.Collections.Specialized;
 
 namespace WoWObjectManager.Objects
@@ -29,7 +30,7 @@ namespace WoWObjectManager.Objects
         /// </summary>
         internal ulong Owner
         {
-            get { return ObjectManager.WoW.ReadUInt64((uint)DescriptorBase + (int) Offsets.WoWCorpse.Owner); }
+            get { return ObjectManager.WoW.Read<ulong>((IntPtr)DescriptorBase + (int) Offsets.WoWCorpse.Owner); }
         }
 
         /// <summary>
@@ -76,9 +77,9 @@ namespace WoWObjectManager.Objects
                 if (MyCorpse)
                 {
                     return new Vector3(
-                        ObjectManager.WoW.ReadFloat((uint)ObjectManager.WoW.MainModule.BaseAddress + (int)Offsets.WoWCorpse.Player_Corpse_X),
-                        ObjectManager.WoW.ReadFloat((uint)ObjectManager.WoW.MainModule.BaseAddress + (int)Offsets.WoWCorpse.Player_Corpse_Y),
-                        ObjectManager.WoW.ReadFloat((uint)ObjectManager.WoW.MainModule.BaseAddress + (int)Offsets.WoWCorpse.Player_Corpse_Z)
+                        ObjectManager.WoW.Read<float>((IntPtr)ObjectManager.WoW.ImageBase + (int)Offsets.WoWCorpse.Player_Corpse_X),
+                        ObjectManager.WoW.Read<float>((IntPtr)ObjectManager.WoW.ImageBase + (int)Offsets.WoWCorpse.Player_Corpse_Y),
+                        ObjectManager.WoW.Read<float>((IntPtr)ObjectManager.WoW.ImageBase + (int)Offsets.WoWCorpse.Player_Corpse_Z)
                         );
                 }
                 else
