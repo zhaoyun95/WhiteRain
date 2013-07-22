@@ -26,7 +26,7 @@ namespace WoWObjectManager.Objects
         /// </summary>
         internal string Name
         {
-            get { return ObjectManager.WoW.ReadString((IntPtr) ObjectManager.WoW.ImageBase + (int)Offsets.WoWPlayerMe.Name, Encoding.ASCII); }
+            get { return ObjectManager.WoW.ReadString((IntPtr) ObjectManager.WoW.ImageBase + (int)Offsets.WoWPlayerMe.Name, Encoding.UTF8); }
         }
 
         /// <summary>

@@ -70,6 +70,9 @@ namespace WoWObjectManager.Objects
             get { return GetDescriptorField<BitVector32>((uint)Offsets.WoWCorpse.Flags); }
         }
 
+        /// <summary>
+        /// The corpse position
+        /// </summary>
         internal Vector3 Position
         {
             get

@@ -46,7 +46,7 @@ namespace WoWObjectManager.Objects
         /// </summary>
         internal string Name
         {
-            get { return ObjectManager.WoW.ReadString((IntPtr) ObjectManager.WoW.Read<uint>((IntPtr) ObjectManager.WoW.Read<uint>((IntPtr) BaseAddress + (int)Offsets.WoWUnit.NamePointer) + (int) Offsets.WoWUnit.NameOffset), Encoding.ASCII); }
+            get { return ObjectManager.WoW.ReadString((IntPtr) ObjectManager.WoW.Read<uint>((IntPtr) ObjectManager.WoW.Read<uint>((IntPtr) BaseAddress + (int)Offsets.WoWUnit.NamePointer) + (int) Offsets.WoWUnit.NameOffset), Encoding.UTF8); }
         }
 
         /// <summary>
