@@ -10,6 +10,7 @@
 
 using System;
 using System.Collections.Specialized;
+using System.ComponentModel;
 
 namespace WoWObjectManager.Objects
 {
@@ -22,35 +23,56 @@ namespace WoWObjectManager.Objects
         /// Instantiates a new WoWUnit
         /// </summary>
         /// <param name="baseAddr">The object's base address</param>
-        internal WoWObject(uint BaseAddress)
+        public WoWObject(IntPtr BaseAddress)
         {
             this.BaseAddress = BaseAddress;
         }
 
+        [Category("General")]
+        [Description("The objects base address pointer.")]
         /// <summary>
-        /// The objects base address
+        /// The objects base address pointer.
         /// </summary>
-        internal uint BaseAddress { get; set; }
+        public IntPtr BaseAddress { get; set; }
 
-        internal uint DescriptorBase
+        [Category("General")]
+        [Description("The objects descriptor base pointer.")]
+        /// <summary>
+        /// The objects descriptor base pointer.
+        /// </summary>
+        public IntPtr DescriptorBase
         {
-            get { return ObjectManager.WoW.Read<uint>((IntPtr)this.BaseAddress + (int)Offsets.Descriptors.Descriptor); }
+            get { return ObjectManager.WoW.Read<IntPtr>(BaseAddress + (int)Offsets.Descriptors.Descriptor); }
         }
 
+        [Category("Informations")]
+        [Description("The objects entry ID.")]
+        /// <summary>
+        /// The objects entry ID.
+        /// </summary>
+        public int EntryID
+        {
+            get { return ObjectManager.WoW.Read<int>(BaseAddress + (int)Offsets.WoWObject.EntryID); }
+        }
+
+        [Category("Informations")]
+        [Description("There are several ObjectTypes. Take a look at (enum) WoWObjectType")]
         /// <summary>
         /// The objects type
         /// </summary>
-        internal int Type
+        public int Type
         {
-            get { return ObjectManager.WoW.Read<int>((IntPtr) this.BaseAddress + (int)Offsets.WoWObject.Type); }
+            get { return ObjectManager.WoW.Read<int>(BaseAddress + (int)Offsets.WoWObject.Type); }
         }
 
+        [Category("Informations")]
+        [Description("Every object has an unique Guid. Use this to identify and access the object.")]
         /// <summary>
-        /// The objects guid
+        /// The objects Guid
         /// </summary>
-        internal ulong Guid
+        public ulong Guid
         {
-            get { return ObjectManager.WoW.Read<ulong>((IntPtr) this.BaseAddress + (int)Offsets.WoWObject.GUID); }
+            get { return ObjectManager.WoW.Read<ulong>(BaseAddress + (int)Offsets.WoWObject.GUID); }
         }
 
         /// <summary>
@@ -59,9 +81,9 @@ namespace WoWObjectManager.Objects
         /// <typeparam name="type">The type</typeparam>
         /// <param name="field">Descriptor</param>
         /// <returns>Descript value</returns>
-        internal T GetDescriptorField<T>(uint field) where T : struct
+        public T GetDescriptorField<T>(uint field) where T : struct
         {
-            return (T) ObjectManager.WoW.Read<T>((IntPtr) this.DescriptorBase + (int) field);
+            return (T) ObjectManager.WoW.Read<T>(DescriptorBase + (int) field);
         }
     }
 }

@@ -43,6 +43,7 @@ namespace WoWObjectManager
             Type = 0xC,
             GUID = 0x28,
             DynamicFlags = 0x18,
+            EntryID = 0x14
         }
 
         public enum WoWCorpse
@@ -194,6 +195,7 @@ namespace WoWObjectManager
             X = 0x7F8,
             Y = X + 0x4,
             Z = Y + 0x4,
+            R = Z + 0x4,
             Charm = 0x20,
             Summon = 0x28,
             Critter = 0x30,

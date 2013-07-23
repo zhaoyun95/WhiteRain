@@ -8,6 +8,7 @@
  *
  */
 
+using System;
 using System.Collections.Specialized;
 
 namespace WoWObjectManager.Objects
@@ -21,7 +22,7 @@ namespace WoWObjectManager.Objects
         /// 
         /// </summary>
         /// <param name="BaseAddress"></param>
-        public WoWItem(uint BaseAddress)
+        public WoWItem(IntPtr BaseAddress)
             : base(BaseAddress) { }
 
         /// <summary>

@@ -80,8 +80,7 @@ namespace WoWObjectManager
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: Couldn't initialize the ObjectManager. New patch available? Invalid process id?");
-                Console.WriteLine(ex.Message);
+                throw new Exception(string.Format("Failed to initialize the ObjectManager. Error: {0}", ex.Message));
             }
         }
 
@@ -94,39 +93,43 @@ namespace WoWObjectManager
                 return;
 
             CurObj = WoW.Read<uint>((IntPtr) ObjMgr + (int) Offsets.ObjectManager.FirstObject);
-
-            if (WoWUnitList.Count > 0)
-                WoWUnitList.Clear();
-            if (WoWCorpseList.Count > 0)
-                WoWCorpseList.Clear();
-            if (WoWItemList.Count > 0)
-                WoWItemList.Clear();
-
-            while (CurObj != 0 && (CurObj & 1) == 0)
+            
+            lock (WoWUnitList) lock (WoWCorpseList) lock (WoWItemList)
             {
-                WoWObject WoWObject = new WoWObject(CurObj);
-                uint NextObj = WoW.Read<uint>((IntPtr) CurObj + (int) Offsets.ObjectManager.NextObject);
 
-                if (WoWObject.Guid == PlayerGUID)
-                    Me = new WoWPlayerMe(CurObj);
+                if (WoWUnitList.Count > 0)
+                    WoWUnitList.Clear();
+                if (WoWCorpseList.Count > 0)
+                    WoWCorpseList.Clear();
+                if (WoWItemList.Count > 0)
+                    WoWItemList.Clear();
 
-                switch (WoWObject.Type)
+                while (CurObj != 0 && (CurObj & 1) == 0)
                 {
-                    case (int) WoWObjectType.Item:
-                        WoWItemList.Add(new WoWItem(CurObj));
-                        break;
-                    case (int) WoWObjectType.Corpse:
-                        WoWCorpseList.Add(new WoWCorpse(CurObj));
-                        break;
-                    case (int) WoWObjectType.Unit:
-                        WoWUnitList.Add(new WoWUnit(CurObj));
-                        break;
-                    case (int) WoWObjectType.Container:
+                    WoWObject WoWObject = new WoWObject((IntPtr)CurObj);
+                    uint NextObj = WoW.Read<uint>((IntPtr)CurObj + (int)Offsets.ObjectManager.NextObject);
 
-                        break;
+                    if (WoWObject.Guid == PlayerGUID)
+                        Me = new WoWPlayerMe((IntPtr)CurObj);
+
+                    switch (WoWObject.Type)
+                    {
+                        case (int)WoWObjectType.Item:
+                            WoWItemList.Add(new WoWItem((IntPtr)CurObj));
+                            break;
+                        case (int)WoWObjectType.Corpse:
+                            WoWCorpseList.Add(new WoWCorpse((IntPtr)CurObj));
+                            break;
+                        case (int)WoWObjectType.Unit:
+                            WoWUnitList.Add(new WoWUnit((IntPtr)CurObj));
+                            break;
+                        case (int)WoWObjectType.Container:
+
+                            break;
+                    }
+
+                    CurObj = NextObj;
                 }
-
-                CurObj = NextObj;
             }
         }
     }

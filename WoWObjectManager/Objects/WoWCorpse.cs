@@ -22,7 +22,7 @@ namespace WoWObjectManager.Objects
         /// 
         /// </summary>
         /// <param name="BaseAddress"></param>
-        public WoWCorpse(uint BaseAddress)
+        public WoWCorpse(IntPtr BaseAddress)
             : base(BaseAddress) { }
 
         /// <summary>

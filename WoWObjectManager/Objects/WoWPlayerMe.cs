@@ -18,7 +18,7 @@ namespace WoWObjectManager.Objects
     /// </summary>
     class WoWPlayerMe : WoWObject
     {
-        internal WoWPlayerMe(uint BaseAddress)
+        internal WoWPlayerMe(IntPtr BaseAddress)
             : base(BaseAddress) { }
 
         /// <summary>
@@ -49,6 +49,17 @@ namespace WoWObjectManager.Objects
                     Y = ObjectManager.WoW.Read<float>((IntPtr)BaseAddress + (int)Offsets.WoWUnit.Y),
                     Z = ObjectManager.WoW.Read<float>((IntPtr)BaseAddress + (int)Offsets.WoWUnit.Z)
                 };
+            }
+        }
+
+        /// <summary>
+        /// The units rotation
+        /// </summary>
+        internal float Rotation
+        {
+            get
+            {
+                return ObjectManager.WoW.Read<float>((IntPtr)BaseAddress + (int)Offsets.WoWUnit.R);
             }
         }
 
