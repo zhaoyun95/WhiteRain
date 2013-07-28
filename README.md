@@ -13,4 +13,4 @@ Credits
 ================
 
 * OwnedCore for the info dump threads
-* Shynd for creating BlackMagic
+* Apoc for creating GreyMagic
