@@ -1,4 +1,4 @@
-﻿namespace whiteRain.Testing
+﻿namespace WhiteRainTesting
 {
     partial class MainForm
     {
@@ -166,6 +166,7 @@
             // zoomFactorIncrease
             // 
             this.zoomFactorIncrease.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.zoomFactorIncrease.Image = global::WhiteRainNS.Testing.Properties.Resources.magnifier_zoom_in;
             this.zoomFactorIncrease.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.zoomFactorIncrease.Name = "zoomFactorIncrease";
             this.zoomFactorIncrease.Size = new System.Drawing.Size(23, 22);
@@ -175,6 +176,7 @@
             // zoomFactorDecrease
             // 
             this.zoomFactorDecrease.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.zoomFactorDecrease.Image = global::WhiteRainNS.Testing.Properties.Resources.magnifier_zoom_out;
             this.zoomFactorDecrease.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.zoomFactorDecrease.Name = "zoomFactorDecrease";
             this.zoomFactorDecrease.Size = new System.Drawing.Size(23, 22);
@@ -207,7 +209,7 @@
             // toolStripButton3
             // 
             this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = global::whiteRain.Properties.Resources.cursor;
+            this.toolStripButton3.Image = global::WhiteRainNS.Testing.Properties.Resources.cursor;
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
             this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
@@ -235,8 +237,7 @@
             // toolStripButton4
             // 
             this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton4.Image = global::whiteRain.Properties.Resources.selection_select;
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Image = global::WhiteRainNS.Testing.Properties.Resources.selection_select;
             this.toolStripButton4.Name = "toolStripButton4";
             this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton4.Text = "toolStripButton4";
@@ -246,7 +247,7 @@
             // SelectionCoords
             // 
             this.SelectionCoords.Name = "SelectionCoords";
-            this.SelectionCoords.Size = new System.Drawing.Size(130, 22);
+            this.SelectionCoords.Size = new System.Drawing.Size(130, 15);
             this.SelectionCoords.Text = "X: {0} Y: {1} W: {2} H: {3}";
             // 
             // objectProperties

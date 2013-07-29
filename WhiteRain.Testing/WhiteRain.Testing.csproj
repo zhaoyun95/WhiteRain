@@ -7,7 +7,7 @@
     <ProjectGuid>{5EFD2953-394C-4A30-81C9-23C9EE48CBC6}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WhiteRain.Testing</RootNamespace>
+    <RootNamespace>WhiteRainNS.Testing</RootNamespace>
     <AssemblyName>WhiteRain.Testing</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -75,6 +75,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -90,6 +91,18 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cursor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\magnifier-zoom-in.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\magnifier-zoom-out.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\selection-select.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

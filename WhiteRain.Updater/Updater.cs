@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace whiteRain.Updater
+namespace WhiteRainNS.Updater
 {
     public partial class Updater : Form
     {

@@ -15,10 +15,10 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using whiteRain;
-using whiteRain.Objects;
+using WhiteRainNS;
+using WhiteRainNS.Objects;
 
-namespace whiteRain.Testing
+namespace WhiteRainTesting
 {
     public partial class MainForm : Form
     {

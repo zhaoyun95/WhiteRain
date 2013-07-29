@@ -12,7 +12,7 @@ using System;
 using System.Collections.Specialized;
 using System.ComponentModel;
 
-namespace whiteRain.Objects
+namespace WhiteRainNS.Objects
 {
     /// <summary>
     /// An object.

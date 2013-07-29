@@ -13,7 +13,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace whiteRain
+namespace WhiteRainNS
 {
     /// <summary>
     /// All offsets are for patch 5.3.0 17055.

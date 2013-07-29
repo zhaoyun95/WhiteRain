@@ -11,7 +11,7 @@
 using System;
 using System.Collections.Specialized;
 
-namespace whiteRain.Objects
+namespace WhiteRainNS.Objects
 {
     /// <summary>
     /// A corpse

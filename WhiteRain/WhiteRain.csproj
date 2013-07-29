@@ -7,7 +7,7 @@
     <ProjectGuid>{20159F0F-0632-4D8E-A50B-A46943065D8B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WhiteRain</RootNamespace>
+    <RootNamespace>WhiteRainNS</RootNamespace>
     <AssemblyName>WhiteRain</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -91,19 +91,8 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\magnifier-zoom-in.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\magnifier-zoom-out.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\cursor.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\selection-select.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">

@@ -11,9 +11,10 @@
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using whiteRain.Objects;
+using WhiteRainNS.Objects;
+using WhiteRainNS;
 
-namespace whiteRain
+namespace WhiteRainTesting
 {
     class WoWMap
     {

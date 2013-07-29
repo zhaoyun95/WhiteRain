@@ -11,7 +11,7 @@
 using System;
 using System.Text;
 
-namespace whiteRain.Objects
+namespace WhiteRainNS.Objects
 {
     /// <summary>
     /// Repesents the local player

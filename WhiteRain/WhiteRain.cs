@@ -18,9 +18,9 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using whiteRain.Objects;
+using WhiteRainNS.Objects;
 
-namespace whiteRain
+namespace WhiteRainNS
 {
     public class WhiteRain
     {

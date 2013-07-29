@@ -1,4 +1,4 @@
-﻿namespace whiteRain.Updater
+﻿namespace WhiteRainNS.Updater
 {
     partial class Updater
     {

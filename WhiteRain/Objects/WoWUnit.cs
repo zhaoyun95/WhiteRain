@@ -13,7 +13,7 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Text;
 
-namespace whiteRain.Objects
+namespace WhiteRainNS.Objects
 {
     /// <summary>
     /// An unit (Monster, NPCs)

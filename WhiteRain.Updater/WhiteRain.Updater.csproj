@@ -7,7 +7,7 @@
     <ProjectGuid>{E32637FB-BCB7-4DD6-A52C-A6B877D03BAB}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WhiteRain.Updater</RootNamespace>
+    <RootNamespace>WhiteRainNS.Updater</RootNamespace>
     <AssemblyName>WhiteRain.Updater</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
