@@ -13,12 +13,12 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Text;
 
-namespace WoWObjectManager.Objects
+namespace whiteRain.Objects
 {
     /// <summary>
     /// An unit (Monster, NPCs)
     /// </summary>
-    class WoWUnit : WoWObject
+    public class WoWUnit : WoWObject
     {
         /// <summary>
         /// Instantiates a new WoWUnit
@@ -38,9 +38,9 @@ namespace WoWObjectManager.Objects
             get
             {
                 return new Vector3 {
-                    X = ObjectManager.WoW.Read<float>(BaseAddress + (int)Offsets.WoWUnit.X),
-                    Y = ObjectManager.WoW.Read<float>(BaseAddress + (int)Offsets.WoWUnit.Y),
-                    Z = ObjectManager.WoW.Read<float>(BaseAddress + (int)Offsets.WoWUnit.Z)
+                    X = WhiteRain.WoW.Read<float>(BaseAddress + (int)Offsets.WoWUnit.X),
+                    Y = WhiteRain.WoW.Read<float>(BaseAddress + (int)Offsets.WoWUnit.Y),
+                    Z = WhiteRain.WoW.Read<float>(BaseAddress + (int)Offsets.WoWUnit.Z)
                 };
             }
         }
@@ -52,7 +52,7 @@ namespace WoWObjectManager.Objects
         /// </summary>
         public string Name
         {
-            get { return ObjectManager.WoW.ReadString((IntPtr) ObjectManager.WoW.Read<uint>((IntPtr) ObjectManager.WoW.Read<uint>((IntPtr) BaseAddress + (int)Offsets.WoWUnit.NamePointer) + (int) Offsets.WoWUnit.NameOffset), Encoding.UTF8); }
+            get { return WhiteRain.WoW.ReadString((IntPtr) WhiteRain.WoW.Read<uint>((IntPtr) WhiteRain.WoW.Read<uint>((IntPtr) BaseAddress + (int)Offsets.WoWUnit.NamePointer) + (int) Offsets.WoWUnit.NameOffset), Encoding.UTF8); }
         }
 
         [Category("Informations")]
@@ -236,7 +236,7 @@ namespace WoWObjectManager.Objects
         /// </summary>
         /// <param name="flag">The NpcFlag</param>
         /// <returns>true or false</returns>
-        public dynamic HasFlag(Offsets.UnitDynamicFlags flag)
+        public bool HasFlag(Offsets.UnitDynamicFlags flag)
         {
             return DynamicFlags[(int)flag];
         }

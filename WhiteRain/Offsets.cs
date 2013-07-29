@@ -9,23 +9,28 @@
  */
 
 using System;
-namespace WoWObjectManager
+using System.IO;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
+
+namespace whiteRain
 {
     /// <summary>
     /// All offsets are for patch 5.3.0 17055.
     /// Credits to the OwnedCore.com Memory section (http://www.ownedcore.com/forums/world-of-warcraft/world-of-warcraft-bots-programs/wow-memory-editing/)
     /// </summary>
-    class Offsets
+    public class Offsets
     {
         public enum General
         {
-            WoWVersion = 0xC01497
+            WoWVersion = 0xC01497,
+            Build = 17128
         }
 
         public enum ObjectManager
         {
             clientConnection = 0xE3CB00,
-            ObjectManager = 0x462C,
+            objectManager = 0x462C,
             FirstObject = 0xCC,
             NextObject = 0x34,
             LocalGUID = 0xE0
@@ -38,12 +43,30 @@ namespace WoWObjectManager
             DisplayId = 0x108
         }
 
+        public enum Fishbot
+        {
+            BobberHasMoved = 0xC4,
+            MouseOverGUID = 0xCDC860
+        }
+
         public enum WoWObject
         {
             Type = 0xC,
             GUID = 0x28,
             DynamicFlags = 0x18,
             EntryID = 0x14
+        }
+
+        public enum WoWGameObject
+        {
+           CreatedBy = 0x20,
+           DisplayID = 0x28,
+           Flags = 0x2C,
+           ParentRotation = 0x30,
+           FactionTemplate = 0x40,
+           Level = 0x44,
+           PercentHealth = 0x48,
+           StateSpellVisualID = 0x4C,
         }
 
         public enum WoWCorpse

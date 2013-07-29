@@ -11,43 +11,43 @@
 using System;
 using System.Text;
 
-namespace WoWObjectManager.Objects
+namespace whiteRain.Objects
 {
     /// <summary>
     /// Repesents the local player
     /// </summary>
-    class WoWPlayerMe : WoWObject
+    public class WoWPlayerMe : WoWObject
     {
-        internal WoWPlayerMe(IntPtr BaseAddress)
+        public WoWPlayerMe(IntPtr BaseAddress)
             : base(BaseAddress) { }
 
         /// <summary>
         /// The players name
         /// </summary>
-        internal string Name
+        public string Name
         {
-            get { return ObjectManager.WoW.ReadString((IntPtr) ObjectManager.WoW.ImageBase + (int)Offsets.WoWPlayerMe.Name, Encoding.UTF8); }
+            get { return WhiteRain.WoW.ReadString((IntPtr) WhiteRain.WoW.ImageBase + (int)Offsets.WoWPlayerMe.Name, Encoding.UTF8); }
         }
 
         /// <summary>
         /// The players GUID
         /// </summary>
-        internal ulong TargetGUID
+        public ulong TargetGUID
         {
-            get { return ObjectManager.WoW.Read<ulong>((IntPtr)ObjectManager.WoW.ImageBase + (int)Offsets.WoWPlayerMe.TargetGUID); }
+            get { return WhiteRain.WoW.Read<ulong>((IntPtr)WhiteRain.WoW.ImageBase + (int)Offsets.WoWPlayerMe.TargetGUID); }
         }
 
         /// <summary>
         /// Returns the postion as Vector3
         /// </summary>
-        internal Vector3 Position
+        public Vector3 Position
         {
             get
             {
                 return new Vector3{
-                    X = ObjectManager.WoW.Read<float>((IntPtr)BaseAddress + (int)Offsets.WoWUnit.X),
-                    Y = ObjectManager.WoW.Read<float>((IntPtr)BaseAddress + (int)Offsets.WoWUnit.Y),
-                    Z = ObjectManager.WoW.Read<float>((IntPtr)BaseAddress + (int)Offsets.WoWUnit.Z)
+                    X = WhiteRain.WoW.Read<float>((IntPtr)BaseAddress + (int)Offsets.WoWUnit.X),
+                    Y = WhiteRain.WoW.Read<float>((IntPtr)BaseAddress + (int)Offsets.WoWUnit.Y),
+                    Z = WhiteRain.WoW.Read<float>((IntPtr)BaseAddress + (int)Offsets.WoWUnit.Z)
                 };
             }
         }
@@ -55,50 +55,50 @@ namespace WoWObjectManager.Objects
         /// <summary>
         /// The units rotation
         /// </summary>
-        internal float Rotation
+        public float Rotation
         {
             get
             {
-                return ObjectManager.WoW.Read<float>((IntPtr)BaseAddress + (int)Offsets.WoWUnit.R);
+                return WhiteRain.WoW.Read<float>((IntPtr)BaseAddress + (int)Offsets.WoWUnit.R);
             }
         }
 
         /// <summary>
         /// The continendid on which the player currently is
         /// </summary>
-        internal int ContinentId
+        public int ContinentId
         {
-            get {return ObjectManager.WoW.Read<int>((IntPtr)ObjectManager.WoW.ImageBase + (int) Offsets.WoWPlayerMe.ContinentId); }
+            get {return WhiteRain.WoW.Read<int>((IntPtr)WhiteRain.WoW.ImageBase + (int) Offsets.WoWPlayerMe.ContinentId); }
         }
 
         /// <summary>
         /// The areaid on which the player currently is
         /// </summary>
-        internal int AreaId
+        public int AreaId
         {
-            get { return ObjectManager.WoW.Read<int>((IntPtr)ObjectManager.WoW.ImageBase + (int) Offsets.WoWPlayerMe.AreaId); }
+            get { return WhiteRain.WoW.Read<int>((IntPtr)WhiteRain.WoW.ImageBase + (int) Offsets.WoWPlayerMe.AreaId); }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        internal string ZoneText
+        public string ZoneText
         {
-            get { return ObjectManager.WoW.ReadString((IntPtr) ObjectManager.WoW.Read<uint>((IntPtr)ObjectManager.WoW.ImageBase + (int)Offsets.WoWPlayerMe.ZoneText), Encoding.ASCII); }
+            get { return WhiteRain.WoW.ReadString((IntPtr) WhiteRain.WoW.Read<uint>((IntPtr)WhiteRain.WoW.ImageBase + (int)Offsets.WoWPlayerMe.ZoneText), Encoding.ASCII); }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        internal string SubZoneText
+        public string SubZoneText
         {
-            get { return ObjectManager.WoW.ReadString((IntPtr) ObjectManager.WoW.Read<uint>((IntPtr)ObjectManager.WoW.ImageBase + (int)Offsets.WoWPlayerMe.SubZoneText), Encoding.ASCII); }
+            get { return WhiteRain.WoW.ReadString((IntPtr) WhiteRain.WoW.Read<uint>((IntPtr)WhiteRain.WoW.ImageBase + (int)Offsets.WoWPlayerMe.SubZoneText), Encoding.ASCII); }
         }
 
         /// <summary>
         /// The players base health
         /// </summary>
-        internal int BaseHealth
+        public int BaseHealth
         {
             get { return GetDescriptorField<int>((uint)Offsets.WoWUnit.Health); }
         }
@@ -106,7 +106,7 @@ namespace WoWObjectManager.Objects
         /// <summary>
         /// The players max health
         /// </summary>
-        internal int MaxHealth
+        public int MaxHealth
         {
             get { return GetDescriptorField<int>((uint)Offsets.WoWUnit.MaxHealth); }
         }
@@ -114,7 +114,7 @@ namespace WoWObjectManager.Objects
         /// <summary>
         /// The players base power (Mana, Energy, Focus, Runic Power)
         /// </summary>
-        internal int BasePower
+        public int BasePower
         {
             get
             {
@@ -123,13 +123,13 @@ namespace WoWObjectManager.Objects
                 switch (this.Class)
                 {
                     case WoWClass.Rogue:
-                        BasePower = ObjectManager.WoW.Read<int>((IntPtr)DescriptorBase + (int)Offsets.WoWUnit.Energy);
+                        BasePower = WhiteRain.WoW.Read<int>((IntPtr)DescriptorBase + (int)Offsets.WoWUnit.Energy);
                         break;
                     case WoWClass.Warrior:
-                        BasePower = ObjectManager.WoW.Read<int>((IntPtr)DescriptorBase + (int)Offsets.WoWUnit.Energy);
+                        BasePower = WhiteRain.WoW.Read<int>((IntPtr)DescriptorBase + (int)Offsets.WoWUnit.Energy);
                         break;
                     default:
-                        BasePower = ObjectManager.WoW.Read<int>((IntPtr)DescriptorBase + (int)Offsets.WoWUnit.Power);
+                        BasePower = WhiteRain.WoW.Read<int>((IntPtr)DescriptorBase + (int)Offsets.WoWUnit.Power);
                         break;
                 }
 
@@ -140,7 +140,7 @@ namespace WoWObjectManager.Objects
         /// <summary>
         /// The players max power (Mana, Energy, Focus, Runic Power)
         /// </summary>
-        internal int MaxPower
+        public int MaxPower
         {
             get
             {
@@ -149,7 +149,7 @@ namespace WoWObjectManager.Objects
                 switch (this.Class)
                 {
                     default:
-                        MaxPower = ObjectManager.WoW.Read<int>((IntPtr)DescriptorBase + (int)Offsets.WoWUnit.MaxPower);
+                        MaxPower = WhiteRain.WoW.Read<int>((IntPtr)DescriptorBase + (int)Offsets.WoWUnit.MaxPower);
                         break;
                 }
 
@@ -160,15 +160,15 @@ namespace WoWObjectManager.Objects
         /// <summary>
         /// The players combopoints
         /// </summary>
-        internal int ComboPoints
+        public int ComboPoints
         {
-            get { return ObjectManager.WoW.Read<int>((IntPtr)ObjectManager.WoW.ImageBase + (int)Offsets.WoWPlayerMe.ComboPoints); }
+            get { return WhiteRain.WoW.Read<int>((IntPtr)WhiteRain.WoW.ImageBase + (int)Offsets.WoWPlayerMe.ComboPoints); }
         }
 
         /// <summary>
         /// The players current XP
         /// </summary>
-        internal int XP
+        public int XP
         {
             get { return GetDescriptorField<int>((uint)Offsets.WoWPlayerMe.XP); }
         }
@@ -176,7 +176,7 @@ namespace WoWObjectManager.Objects
         /// <summary>
         /// The players current XP
         /// </summary>
-        internal int MaxXP
+        public int MaxXP
         {
             get { return GetDescriptorField<int>((uint)Offsets.WoWPlayerMe.NextLevelXP); }
         }
@@ -184,20 +184,20 @@ namespace WoWObjectManager.Objects
         /// <summary>
         /// The players class
         /// </summary>
-        internal WoWClass Class
+        public WoWClass Class
         {
             get
             {
-                return (WoWClass)ObjectManager.WoW.Read<byte>((IntPtr) ObjectManager.WoW.ImageBase + (int)Offsets.WoWPlayerMe.PlayerClass);
+                return (WoWClass)WhiteRain.WoW.Read<byte>((IntPtr) WhiteRain.WoW.ImageBase + (int)Offsets.WoWPlayerMe.PlayerClass);
             }
         }
 
         /// <summary>
         /// The players level
         /// </summary>
-        internal float Level
+        public float Level
         {
-            get { return ObjectManager.WoW.Read<int>((IntPtr)DescriptorBase + (int)Offsets.WoWUnit.Level); }
+            get { return WhiteRain.WoW.Read<int>((IntPtr)DescriptorBase + (int)Offsets.WoWUnit.Level); }
         }
     }
 }

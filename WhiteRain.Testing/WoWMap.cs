@@ -11,16 +11,16 @@
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using WoWObjectManager.Objects;
+using whiteRain.Objects;
 
-namespace WoWObjectManager
+namespace whiteRain
 {
     class WoWMap
     {
         /// <summary>
         /// Returns a bitmap of the World of Warcraft minimap
         /// </summary>
-        internal static Bitmap Minimap(Size size, float Zoomfactor = 2.0f, WoWUnit SelectedUnit = null)
+        public static Bitmap Minimap(Size size, float Zoomfactor = 2.0f, WoWUnit SelectedUnit = null)
         {
             Bitmap Bmp = new Bitmap(size.Width, size.Height);
 
@@ -33,14 +33,14 @@ namespace WoWObjectManager
 
                 //Level 1
                 {
-                    lock (ObjectManager.WoWUnitList) lock (ObjectManager.WoWCorpseList) lock (ObjectManager.WoWItemList)
+                    lock (WhiteRain.WoWUnitList) lock (WhiteRain.WoWCorpseList) lock (WhiteRain.WoWItemList)
                     {
-                        foreach (WoWUnit WoWUnit in ObjectManager.WoWUnitList)
+                        foreach (WoWUnit WoWUnit in WhiteRain.WoWUnitList)
                         {
                             SolidBrush ColoredBrush;
 
-                            var Object_X = ((ObjectManager.Me.Position.X - WoWUnit.Position.X) * Zoomfactor + (Bmp.Width / 2.0f));
-                            var Object_Y = ((ObjectManager.Me.Position.Y - WoWUnit.Position.Y) * Zoomfactor + (Bmp.Height / 2.0f));
+                            var Object_X = ((WhiteRain.Me.Position.X - WoWUnit.Position.X) * Zoomfactor + (Bmp.Width / 2.0f));
+                            var Object_Y = ((WhiteRain.Me.Position.Y - WoWUnit.Position.Y) * Zoomfactor + (Bmp.Height / 2.0f));
 
                             if (WoWUnit.IsNPC)
                             {
@@ -72,7 +72,7 @@ namespace WoWObjectManager
                 //Level 2 
                 {
                     Gr.FillEllipse(new SolidBrush(Color.Blue), (Bmp.Width / 2 + 1.50f), (Bmp.Height / 2 - 2.50f), ObjectSize, ObjectSize);
-                    //Gr.DrawString(ObjectManager.Me.Name, DrawFont, new SolidBrush(Color.Black), new PointF((Bmp.Width / 2 - (ObjectManager.Me.Name.Length * 5.3f)), (Bmp.Height / 2 - 40)));
+                    //Gr.DrawString(WhiteRain.Me.Name, DrawFont, new SolidBrush(Color.Black), new PointF((Bmp.Width / 2 - (WhiteRain.Me.Name.Length * 5.3f)), (Bmp.Height / 2 - 40)));
                 }
                 //Level 3
                 {
@@ -92,7 +92,7 @@ namespace WoWObjectManager
         /// <param name="image"></param>
         /// <param name="newSize"></param>
         /// <returns></returns>
-        internal static Image ImageZoom(Image image, Size newSize)
+        public static Image ImageZoom(Image image, Size newSize)
         {
             var bitmap = new Bitmap(image, newSize.Width, newSize.Height);
             using (var g = Graphics.FromImage(bitmap))

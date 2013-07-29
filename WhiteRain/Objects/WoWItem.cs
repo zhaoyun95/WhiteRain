@@ -11,12 +11,12 @@
 using System;
 using System.Collections.Specialized;
 
-namespace WoWObjectManager.Objects
+namespace whiteRain.Objects
 {
     /// <summary>
     /// A WoWitem
     /// </summary>
-    class WoWItem : WoWObject
+    public class WoWItem : WoWObject
     {
         /// <summary>
         /// 
@@ -28,7 +28,7 @@ namespace WoWObjectManager.Objects
         /// <summary>
         /// The items owner GUID
         /// </summary>
-        internal ulong Owner
+        public ulong Owner
         {
             get { return GetDescriptorField<ulong>((uint)Offsets.WoWItem.Owner); }
         }
@@ -36,7 +36,7 @@ namespace WoWObjectManager.Objects
         /// <summary>
         /// The items durability
         /// </summary>
-        internal int Durability
+        public int Durability
         {
             get { return GetDescriptorField<int>((uint)Offsets.WoWItem.Durability); }
         }
@@ -44,7 +44,7 @@ namespace WoWObjectManager.Objects
         /// <summary>
         /// The items maximum durability
         /// </summary>
-        internal int MaxDurability
+        public int MaxDurability
         {
             get { return GetDescriptorField<int>((uint)Offsets.WoWItem.MaxDurability); }
         }
@@ -52,7 +52,7 @@ namespace WoWObjectManager.Objects
         /// <summary>
         /// The amount of stacks
         /// </summary>
-        internal int StackCount
+        public int StackCount
         {
             get { return GetDescriptorField<int>((uint)Offsets.WoWItem.StackCount); }
         }
@@ -60,7 +60,7 @@ namespace WoWObjectManager.Objects
         /// <summary>
         /// The amount of charges this item has left
         /// </summary>
-        internal int Charges
+        public int Charges
         {
             get { return GetDescriptorField<int>((uint)Offsets.WoWItem.SpellCharges); }
         }
@@ -68,7 +68,7 @@ namespace WoWObjectManager.Objects
         /// <summary>
         /// The durability of this item in percent
         /// </summary>
-        internal float DurabilityPercent
+        public float DurabilityPercent
         {
             get
             {
@@ -80,7 +80,7 @@ namespace WoWObjectManager.Objects
         /// <summary>
         /// The GUID in which the item is contained
         /// </summary>
-        internal ulong ContainedIn
+        public ulong ContainedIn
         {
             get { return GetDescriptorField<ulong>((uint)Offsets.WoWItem.ContainedIn); }
         }
@@ -90,7 +90,7 @@ namespace WoWObjectManager.Objects
         /// </summary>
         /// <param name="flag">The ItemFlag</param>
         /// <returns>true or false</returns>
-        internal bool HasFlag(Offsets.WoWItemFlags flag)
+        public bool HasFlag(Offsets.WoWItemFlags flag)
         {
             return DynamicFlags[(int)flag];
         }
@@ -98,7 +98,7 @@ namespace WoWObjectManager.Objects
         /// <summary>
         /// The items dynamic flags
         /// </summary>
-        internal BitVector32 DynamicFlags
+        public BitVector32 DynamicFlags
         {
             get { return GetDescriptorField<BitVector32>((uint)Offsets.WoWItem.DynamicFlags); }
         }

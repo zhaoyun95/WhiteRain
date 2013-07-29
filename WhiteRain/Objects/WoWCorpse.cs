@@ -11,12 +11,12 @@
 using System;
 using System.Collections.Specialized;
 
-namespace WoWObjectManager.Objects
+namespace whiteRain.Objects
 {
     /// <summary>
     /// A corpse
     /// </summary>
-    class WoWCorpse : WoWObject
+    public class WoWCorpse : WoWObject
     {
         /// <summary>
         /// 
@@ -28,19 +28,19 @@ namespace WoWObjectManager.Objects
         /// <summary>
         /// The owner of the corpse
         /// </summary>
-        internal ulong Owner
+        public ulong Owner
         {
-            get { return ObjectManager.WoW.Read<ulong>((IntPtr)DescriptorBase + (int) Offsets.WoWCorpse.Owner); }
+            get { return WhiteRain.WoW.Read<ulong>((IntPtr)DescriptorBase + (int) Offsets.WoWCorpse.Owner); }
         }
 
         /// <summary>
         /// Is this my corpse? :(
         /// </summary>
-        internal bool MyCorpse
+        public bool MyCorpse
         {
             get
             {
-                if (Owner == ObjectManager.Me.Guid)
+                if (Owner == WhiteRain.Me.Guid)
                     return true;
                 return false;
             }
@@ -49,7 +49,7 @@ namespace WoWObjectManager.Objects
         /// <summary>
         /// The displayId of the corpse
         /// </summary>
-        internal int DisplayId
+        public int DisplayId
         {
             get { return GetDescriptorField<int>((uint)Offsets.WoWCorpse.DisplayID); }
         }
@@ -57,7 +57,7 @@ namespace WoWObjectManager.Objects
         /// <summary>
         /// The corpse dynamic flags
         /// </summary>
-        internal BitVector32 DynamicFlags
+        public BitVector32 DynamicFlags
         {
             get { return GetDescriptorField<BitVector32>((uint)Offsets.WoWCorpse.DynamicFlags); }
         }
@@ -65,7 +65,7 @@ namespace WoWObjectManager.Objects
         /// <summary>
         /// The corpse flags
         /// </summary>
-        internal BitVector32 Flags
+        public BitVector32 Flags
         {
             get { return GetDescriptorField<BitVector32>((uint)Offsets.WoWCorpse.Flags); }
         }
@@ -73,16 +73,16 @@ namespace WoWObjectManager.Objects
         /// <summary>
         /// The corpse position
         /// </summary>
-        internal Vector3 Position
+        public Vector3 Position
         {
             get
             {
                 if (MyCorpse)
                 {
                     return new Vector3{
-                        X = ObjectManager.WoW.Read<float>((IntPtr)ObjectManager.WoW.ImageBase + (int)Offsets.WoWCorpse.Player_Corpse_X),
-                        Y = ObjectManager.WoW.Read<float>((IntPtr)ObjectManager.WoW.ImageBase + (int)Offsets.WoWCorpse.Player_Corpse_Y),
-                        Z = ObjectManager.WoW.Read<float>((IntPtr)ObjectManager.WoW.ImageBase + (int)Offsets.WoWCorpse.Player_Corpse_Z)
+                        X = WhiteRain.WoW.Read<float>((IntPtr)WhiteRain.WoW.ImageBase + (int)Offsets.WoWCorpse.Player_Corpse_X),
+                        Y = WhiteRain.WoW.Read<float>((IntPtr)WhiteRain.WoW.ImageBase + (int)Offsets.WoWCorpse.Player_Corpse_Y),
+                        Z = WhiteRain.WoW.Read<float>((IntPtr)WhiteRain.WoW.ImageBase + (int)Offsets.WoWCorpse.Player_Corpse_Z)
                     };
                 }
                 else

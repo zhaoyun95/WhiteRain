@@ -11,12 +11,14 @@
 using System;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using WoWObjectManager.Objects;
+using whiteRain;
+using whiteRain.Objects;
 
-namespace WoWObjectManager.Forms
+namespace whiteRain.Testing
 {
     public partial class MainForm : Form
     {
@@ -36,7 +38,14 @@ namespace WoWObjectManager.Forms
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            ObjectManager.Initialize(Process.GetProcessesByName("Wow").FirstOrDefault());
+            try
+            {
+                WhiteRain.Initialize(Process.GetProcessesByName("Wow").FirstOrDefault(), new WhiteRain.LaunchParameters { UpdateAutomatically = true});
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
             #region Populate the Zoomfactor box
                         float[] Zoomfactors = new float[] { .4f, .6f, 1f, 1.4f, 1.8f, 2.0f, 2.4f, 3f, 3.5f, 4f, 5f, 6f, 8f, 10f, 13f, 15f  };
@@ -47,7 +56,7 @@ namespace WoWObjectManager.Forms
                         zoomFactorComboBox.Text = "200%"; //Yup, this looks strange. However, SelectedIndex doesnt work and this does the same.
             #endregion
 
-            if (!ObjectManager.Initialized)
+            if (!WhiteRain.Initialized)
                 return;
 
             #region Mah Dirty Form Stuff
@@ -65,7 +74,6 @@ namespace WoWObjectManager.Forms
 
             #endregion
         }
-        //xd
 
         #region Mah Dirty Form Stuff² (only for testing n stuff!)
 
@@ -109,24 +117,29 @@ namespace WoWObjectManager.Forms
             ulong SelectedGuid = Convert.ToUInt64(e.Item.SubItems[2].Text);
             WoWObjectType ObjectType = (WoWObjectType)Convert.ToInt32(e.Item.SubItems[1].Text);
 
-            WoWUnit WoWUnit = ObjectManager.WoWUnitList.Where(Obj => Obj.Guid == SelectedGuid).FirstOrDefault();
 
             if (ObjectType == WoWObjectType.Unit)
             {
+                WoWUnit WoWUnit = WhiteRain.WoWUnitList.Where(Obj => Obj.Guid == SelectedGuid).FirstOrDefault();
                 objectProperties.SelectedObject = WoWUnit;
+            }
+            if (ObjectType == WoWObjectType.GameObject)
+            {
+                WoWGameObject WoWGameObject = WhiteRain.WoWGameObjectList.Where(Obj => Obj.Guid == SelectedGuid).FirstOrDefault();
+                objectProperties.SelectedObject = WoWGameObject;
             }
         }
 
         private void RefreshListView()
         {
-            if (!ObjectManager.Initialized)
+            if (!WhiteRain.Initialized)
                 return;
 
-            ObjectManager.Pulse();
+            WhiteRain.Pulse();
             this.WoWUnitList.Items.Clear();
 
             //All WoWUnits
-            foreach (WoWUnit WoWUnit in ObjectManager.WoWUnitList)
+            foreach (WoWUnit WoWUnit in WhiteRain.WoWUnitList)
             {
                 this.WoWUnitList.Items.Add("0x" + WoWUnit.BaseAddress.ToString("X")).SubItems.AddRange(new string[] {
                     WoWUnit.Type.ToString(),
@@ -135,7 +148,7 @@ namespace WoWObjectManager.Forms
                  });
             }
             //All WoWCorpses
-            foreach (WoWCorpse WoWCorpse in ObjectManager.WoWCorpseList)
+            foreach (WoWCorpse WoWCorpse in WhiteRain.WoWCorpseList)
             {
                 this.WoWUnitList.Items.Add("0x" + WoWCorpse.BaseAddress.ToString("X")).SubItems.AddRange(new string[] {
                     WoWCorpse.Type.ToString(),
@@ -143,8 +156,17 @@ namespace WoWObjectManager.Forms
                     "Corpse"
                  });
             }
+            //All WoWGameObjects
+            foreach (WoWGameObject WoWGameObject in WhiteRain.WoWGameObjectList.Where(obj => obj.CreatedBy == WhiteRain.Me.Guid))
+            {
+                this.WoWUnitList.Items.Add("0x" + WoWGameObject.BaseAddress.ToString("X")).SubItems.AddRange(new string[] {
+                    WoWGameObject.Type.ToString(),
+                    WoWGameObject.Guid.ToString(),
+                    "GameObject"
+                 });
+            }
             //All WoWItems
-            foreach (WoWItem WoWItem in ObjectManager.WoWItemList)
+            foreach (WoWItem WoWItem in WhiteRain.WoWItemList)
             {
                 this.WoWUnitList.Items.Add("0x" + WoWItem.BaseAddress.ToString("X")).SubItems.AddRange(new string[] {
                     WoWItem.Type.ToString(),
@@ -217,8 +239,12 @@ namespace WoWObjectManager.Forms
 
         private void RedrawMap()
         {
-            this.WoWMapBmp.BackgroundImage = WoWMap.Minimap(new Size(WoWMapBmp.Size.Width, WoWMapBmp.Size.Height), Zoomfactor, SelectedUnit); //Redraw map
-            zoomFactorComboBox.Text = string.Format("{0}", Zoomfactor.ToString("#0.##%"));
+            try
+            {
+                this.WoWMapBmp.BackgroundImage = WoWMap.Minimap(new Size(WoWMapBmp.Size.Width, WoWMapBmp.Size.Height), Zoomfactor, SelectedUnit); //Redraw map
+                zoomFactorComboBox.Text = string.Format("{0}", Zoomfactor.ToString("#0.##%"));
+            }
+            catch (Exception) { }
         }
 
         private void zoomFactorIncrease_Click(object sender, EventArgs e)
@@ -242,10 +268,10 @@ namespace WoWObjectManager.Forms
             double ClosestUnitDistance = 1000;
             WoWUnit ClosestUnit = new WoWUnit((IntPtr) 0x10000);
             Point ClosestUnitPoints = new Point(0, 0);
-            foreach (WoWUnit WoWUnit in ObjectManager.WoWUnitList)
+            foreach (WoWUnit WoWUnit in WhiteRain.WoWUnitList)
             {
-                var Object_X = ((ObjectManager.Me.Position.X - WoWUnit.Position.X) * Zoomfactor + (WoWMapBmp.Width / 2.0f));
-                var Object_Y = ((ObjectManager.Me.Position.Y - WoWUnit.Position.Y) * Zoomfactor + (WoWMapBmp.Height / 2.0f));
+                var Object_X = ((WhiteRain.Me.Position.X - WoWUnit.Position.X) * Zoomfactor + (WoWMapBmp.Width / 2.0f));
+                var Object_Y = ((WhiteRain.Me.Position.Y - WoWUnit.Position.Y) * Zoomfactor + (WoWMapBmp.Height / 2.0f));
 
                 var xd = (Object_X - MousePoint.X);
                 var yd = (Object_Y - MousePoint.Y);
@@ -269,7 +295,7 @@ namespace WoWObjectManager.Forms
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            MapThread.Abort();
+
         }
 
         private void WoWMapBmp_MouseEnter(object sender, EventArgs e)

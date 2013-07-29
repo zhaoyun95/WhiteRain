@@ -1,4 +1,4 @@
-﻿namespace WoWObjectManager.Forms
+﻿namespace whiteRain.Testing
 {
     partial class MainForm
     {
@@ -166,7 +166,6 @@
             // zoomFactorIncrease
             // 
             this.zoomFactorIncrease.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.zoomFactorIncrease.Image = global::WoWObjectManager.Properties.Resources.magnifier_zoom_in;
             this.zoomFactorIncrease.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.zoomFactorIncrease.Name = "zoomFactorIncrease";
             this.zoomFactorIncrease.Size = new System.Drawing.Size(23, 22);
@@ -176,7 +175,6 @@
             // zoomFactorDecrease
             // 
             this.zoomFactorDecrease.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.zoomFactorDecrease.Image = global::WoWObjectManager.Properties.Resources.magnifier_zoom_out;
             this.zoomFactorDecrease.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.zoomFactorDecrease.Name = "zoomFactorDecrease";
             this.zoomFactorDecrease.Size = new System.Drawing.Size(23, 22);
@@ -209,7 +207,7 @@
             // toolStripButton3
             // 
             this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = global::WoWObjectManager.Properties.Resources.cursor;
+            this.toolStripButton3.Image = global::whiteRain.Properties.Resources.cursor;
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
             this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
@@ -237,7 +235,7 @@
             // toolStripButton4
             // 
             this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton4.Image = global::WoWObjectManager.Properties.Resources.selection_select;
+            this.toolStripButton4.Image = global::whiteRain.Properties.Resources.selection_select;
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
             this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
@@ -289,14 +287,14 @@
             // 
             this.aboutToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 

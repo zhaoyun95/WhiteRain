@@ -12,12 +12,12 @@ using System;
 using System.Collections.Specialized;
 using System.ComponentModel;
 
-namespace WoWObjectManager.Objects
+namespace whiteRain.Objects
 {
     /// <summary>
     /// An object.
     /// </summary>
-    class WoWObject
+    public class WoWObject
     {
         /// <summary>
         /// Instantiates a new WoWUnit
@@ -42,7 +42,7 @@ namespace WoWObjectManager.Objects
         /// </summary>
         public IntPtr DescriptorBase
         {
-            get { return ObjectManager.WoW.Read<IntPtr>(BaseAddress + (int)Offsets.Descriptors.Descriptor); }
+            get { return WhiteRain.WoW.Read<IntPtr>(BaseAddress + (int)Offsets.Descriptors.Descriptor); }
         }
 
         [Category("Informations")]
@@ -52,7 +52,7 @@ namespace WoWObjectManager.Objects
         /// </summary>
         public int EntryID
         {
-            get { return ObjectManager.WoW.Read<int>(BaseAddress + (int)Offsets.WoWObject.EntryID); }
+            get { return WhiteRain.WoW.Read<int>(BaseAddress + (int)Offsets.WoWObject.EntryID); }
         }
 
         [Category("Informations")]
@@ -62,7 +62,7 @@ namespace WoWObjectManager.Objects
         /// </summary>
         public int Type
         {
-            get { return ObjectManager.WoW.Read<int>(BaseAddress + (int)Offsets.WoWObject.Type); }
+            get { return WhiteRain.WoW.Read<int>(BaseAddress + (int)Offsets.WoWObject.Type); }
         }
 
         [Category("Informations")]
@@ -72,7 +72,7 @@ namespace WoWObjectManager.Objects
         /// </summary>
         public ulong Guid
         {
-            get { return ObjectManager.WoW.Read<ulong>(BaseAddress + (int)Offsets.WoWObject.GUID); }
+            get { return WhiteRain.WoW.Read<ulong>(BaseAddress + (int)Offsets.WoWObject.GUID); }
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace WoWObjectManager.Objects
         /// <returns>Descript value</returns>
         public T GetDescriptorField<T>(uint field) where T : struct
         {
-            return (T) ObjectManager.WoW.Read<T>(DescriptorBase + (int) field);
+            return (T) WhiteRain.WoW.Read<T>(DescriptorBase + (int) field);
         }
     }
 }
