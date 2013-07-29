@@ -16,7 +16,7 @@ namespace WhiteRainNS.Objects
     /// <summary>
     /// Repesents the local player
     /// </summary>
-    public class WoWPlayerMe : WoWObject
+    public class WoWPlayerMe : WoWUnit
     {
         public WoWPlayerMe(IntPtr BaseAddress)
             : base(BaseAddress) { }
