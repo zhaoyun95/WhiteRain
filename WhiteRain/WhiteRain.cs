@@ -1,10 +1,10 @@
 ﻿/*
- * This file is part of the WoWObjectManager (C) 2013 Finn Grimpe
+ * This file is part of the WhiteRain project (C) 2013 Finn Grimpe
  * Copyright 2013 Finn Grimpe, All Rights Reserved
  * 
- * Github:  https://github.com/finndev/WoWObjectManager/
- * Website: http://finn.lu/
- * License: http://finn.lu/license
+ * Github:  https://github.com/finndev/WhiteRain/
+ * Website: https://finn.lu/whiterain/
+ * License: https://finn.lu/license
  *
  */
 
